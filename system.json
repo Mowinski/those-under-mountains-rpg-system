@@ -1,0 +1,60 @@
+{
+    "id": "those-under-mountains",
+    "title": "Those under mountains rpg system",
+    "description": "A human-readable description of your system.",
+    "version": "0.1.0",
+    "compatibility": {
+        "minimum": 12,
+        "verified": 12
+    },
+    "authors": [
+        {
+            "name": "Kamil Mowinski",
+            "email": "kamil.mowinski@gmail.com",
+            "discord": "kmwhisky"
+        }
+    ],
+    "esmodules": [ "mysystem.mjs" ],
+    "styles": [ "styles/system-styles.css" ],
+    "packs": [
+        {
+            "name": "monsters",
+            "label": "Monsters",
+            "type": "Actor"
+        },
+        {
+            "name": "items",
+            "label": "Items",
+            "type": "Item"
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "documentTypes": {
+        "Actor": {
+            "hero": { "htmlFields": [ "background.biography" ] },
+            "villain": { "htmlFields": [ "background.biography" ] },
+            "pawn": { }
+        },
+        "Item": {
+            "weapon": { },
+            "spell": { }
+        }
+    },
+    "socket": false,
+    "initiative": "1d20",
+    "grid": {
+        "distance": 5,
+        "units": "ft"
+    },
+    "primaryTokenAttribute": "resources.health",
+    "secondaryTokenAttribute": "resources.power",
+    "url": "https://raw.githubusercontent.com/Mowinski/those-under-mountains-rpg-system/refs/heads/main/system.json",
+    "manifest": "https://raw.githubusercontent.com/Mowinski/those-under-mountains-rpg-system/refs/heads/main/system.json",
+    "download": "https://github.com/Mowinski/those-under-mountains-rpg-system/archive/refs/tags/0.1.0.zip"
+}
