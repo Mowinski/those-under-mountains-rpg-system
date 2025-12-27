@@ -31,7 +31,7 @@ export class DwarfActorSheet extends ActorSheet {
 		// Prepare character data and items.
 		this._prepareItems(context);
 		this._prepareCharacterData(context);
-        this._prepareActiveEffectCategories(context, this.actor.allApplicableEffects());
+		this._prepareActiveEffectCategories(context, this.actor.allApplicableEffects());
 
 		return context;
 	}
@@ -39,11 +39,11 @@ export class DwarfActorSheet extends ActorSheet {
 	_prepareCharacterData(context) {
 		context.sto = game.i18n.localize("tum.Ability.Sto.short");
 		context.def = game.i18n.localize("tum.Ability.Def.short");
-        context.wis = game.i18n.localize("tum.Ability.Wis.short");
-        
-        context.stoValue = context.system.abilities.sto;
-        context.defValue = context.system.abilities.def;
-        context.wisValue = context.system.abilities.wis;
+		context.wis = game.i18n.localize("tum.Ability.Wis.short");
+
+		context.stoValue = context.system.stoutness;
+		context.defValue = context.system.deftness;
+		context.wisValue = context.system.wisdom;
 	}
 
 	/**

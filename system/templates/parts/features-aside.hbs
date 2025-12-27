@@ -1,52 +1,34 @@
 <div class="abilities flexcol">
     <div class="ability flexrow flex-group-center">
         <label
-            for="system.abilities.sto.value"
+            for="system.sto"
             class="resource-label rollable flexlarge align-left"
-            data-roll="d12+@abilities.sto.mod"
+            data-roll="d12+@abilities.stoutness"
             data-label="{{sto)}}">
             {{sto}}</label
         >
-        <input type="text" name="system.abilities.sto.value" value="{{stoValue.value}}" data-dtype="Number" />
-        <span
-            class="ability-mod rollable"
-            data-roll="d20+@abilities.sto.mod"
-            data-label="{{sto}}"
-            >{{numberFormat stoValue.mod decimals=0 sign=true}}</span
-        >
+        <input type="text" name="system.stoutness" value="{{stoValue}}" data-dtype="Number" />
     </div>
 
     <div class="ability flexrow flex-group-center">
         <label
-            for="system.abilities.def.value"
+            for="system.deftness"
             class="resource-label rollable flexlarge align-left"
-            data-roll="d12+@abilities.def.mod"
+            data-roll="d12+@abilities.deftness"
             data-label="{{def}}">
             {{def}}</label
         >
-        <input type="text" name="system.abilities.def.value" value="{{defValue.value}}" data-dtype="Number" />
-        <span
-            class="ability-mod rollable"
-            data-roll="d20+@abilities.def.mod"
-            data-label="{{def)}}"
-            >{{numberFormat defValue.mod decimals=0 sign=true}}</span
-        >
+        <input type="text" name="system.abilities.deftness" value="{{defValue}}" data-dtype="Number" />
     </div>
 
     <div class="ability flexrow flex-group-center">
         <label
-            for="system.abilities.wis.value"
+            for="system.wisdom"
             class="resource-label rollable flexlarge align-left"
-            data-roll="d12+@abilities.wis.mod"
+            data-roll="d12+@abilities.wisdom"
             data-label="{{wis}}">
             {{wis}}</label
         >
-        <input type="text" name="system.abilities.wis.value" value="{{wisValue.value}}" data-dtype="Number" />
-        <span
-            class="ability-mod rollable"
-            data-roll="d20+@abilities.wis.mod"
-            data-label="{{wis}}"
-            >{{numberFormat wisValue.mod decimals=0 sign=true}}</span
-        >
+        <input type="text" name="system.wisdom" value="{{wisValue}}" data-dtype="Number" />
     </div>
 </div>
