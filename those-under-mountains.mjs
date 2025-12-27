@@ -1,6 +1,7 @@
 import { SystemActor, SystemItem } from "./module/documents.mjs";
 import { DwarfActorDataModel, WeaponDataModel, ToolDataModel } from "./module/data-models.mjs";
 import { DwarfActorSheet } from "./module/sheet.mjs";
+import { preloadHandlebarsTemplates } from "./module/templates.mjs";
 
 Hooks.once("init", () => {
 	// Configure custom Document implementations.
@@ -29,4 +30,6 @@ Hooks.once("init", () => {
 		makeDefault: true,
 		label: "tum.SheetClass.DwarfCharacter",
 	});
+
+	return preloadHandlebarsTemplates();
 });
