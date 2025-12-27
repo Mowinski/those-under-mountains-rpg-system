@@ -14,7 +14,7 @@
             "discord": "kmwhisky"
         }
     ],
-    "esmodules": [ "mysystem.mjs" ],
+    "esmodules": [ "those-under-mountains.mjs" ],
     "styles": [ "styles/system-styles.css" ],
     "packs": [
         {
