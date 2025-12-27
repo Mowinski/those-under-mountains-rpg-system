@@ -36,7 +36,7 @@ export class SystemActor extends Actor {
 	_prepareCharacterData(actorData) {
 		if (actorData.type !== "dwarf") return;
 
-		for (let [key, skill] of Object.entries(actorData.skills)) {
+		for (let [key, skill] of Object.entries(actorData.system.skills)) {
 			if (skill.level === 0) skill.mod = "d4";
 			else if (skill.level === 1) skill.mod = "d6";
 			else if (skill.level === 2) skill.mod = "d8";
@@ -44,7 +44,6 @@ export class SystemActor extends Actor {
 			else if (skill.level === 4) skill.mod = "d12";
 		}
 	}
-
 
 	async applyDamage() {
 		damage = 1;
