@@ -17,9 +17,18 @@ Hooks.once("init", () => {
 
 	// Configure trackable attributes.
 	CONFIG.Actor.trackableAttributes = {
-		hero: {
+		dwarf: {
 			bar: ["resources.wounds"],
 			value: ["stoutness", "deftness", "wisdom"],
 		},
 	};
+
+	const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
+
+	DocumentSheetConfig.unregisterSheet(Actor, "core", foundry.appv1.sheets.ActorSheet);
+	DocumentSheetConfig.registerSheet(Actor, "tum", applications.actor.CharacterActorSheet, {
+		types: ["dwarf"],
+		makeDefault: true,
+		label: "tum.SheetClass.Character",
+	});
 });

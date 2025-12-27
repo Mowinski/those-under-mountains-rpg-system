@@ -1,1 +1,9 @@
-{ }
+{
+    "tum": {
+        "Ability": {
+            "Sto": { "long": "Stoutness", "abbr": "Sto" },
+            "Def": { "long": "Deftness", "abbr": "Def" },
+            "Wis": { "long": "Wisdom", "abbr": "Wis" }
+        }
+    }
+}

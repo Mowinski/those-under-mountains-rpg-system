@@ -39,7 +39,8 @@ export class DwarfActorDataModel extends ActorDataModel {
 				new SchemaField({
 					name: new StringField({ required: true, blank: false, initial: "New Skill" }),
 					description: new HTMLField({ required: true, blank: true }),
-					level: new NumberField({ required: true, integer: true, min: 0, max: 5, initial: 0 }),
+					level: new NumberField({ required: true, integer: true, min: 0, max: 4, initial: 0 }),
+					mod: new StringField({ required: true, blank: false, initial: "d4" }),
 				})
 			),
 		};
