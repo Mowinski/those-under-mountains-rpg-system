@@ -1,5 +1,6 @@
 import { SystemActor, SystemItem } from "./module/documents.mjs";
 import { DwarfActorDataModel, WeaponDataModel, ToolDataModel } from "./module/data-models.mjs";
+import { DwarfActorSheet } from "./module/sheet.mjs";
 
 Hooks.once("init", () => {
 	// Configure custom Document implementations.
@@ -23,12 +24,9 @@ Hooks.once("init", () => {
 		},
 	};
 
-	const DocumentSheetConfig = foundry.applications.apps.DocumentSheetConfig;
-
-	DocumentSheetConfig.unregisterSheet(Actor, "core", foundry.appv1.sheets.ActorSheet);
-	DocumentSheetConfig.registerSheet(Actor, "tum", applications.actor.CharacterActorSheet, {
-		types: ["dwarf"],
+	Actors.unregisterSheet("core", ActorSheet);
+	Actors.registerSheet("tum", DwarfActorSheet, {
 		makeDefault: true,
-		label: "tum.SheetClass.Character",
+		label: "tum.SheetClass.DwarfCharacter",
 	});
 });
