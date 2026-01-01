@@ -1,4 +1,4 @@
-const { HTMLField, NumberField, SchemaField, StringField, ArrayField } = foundry.data.fields;
+const { HTMLField, NumberField, SchemaField, StringField, ArrayField, DocumentIdField } = foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Actor Models                                */
@@ -21,6 +21,16 @@ class ActorDataModel extends foundry.abstract.TypeDataModel {
 			wisdom: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			armorClass: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			passiveArmorClass: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+			armor: new SchemaField({
+				head: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				body: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				legs: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				block: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				parry: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				skill: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				def: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+				misc: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+			}),
 		};
 	}
 }
@@ -29,20 +39,13 @@ export class DwarfActorDataModel extends ActorDataModel {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
+			gold: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			background: new SchemaField({
 				biography: new HTMLField({ required: true, blank: true }),
 				hold: new StringField({ required: true, blank: true }),
 				ancestry: new StringField({ required: true, blank: true }),
 				profession: new StringField({ required: true, blank: true }),
 			}),
-			skills: new ArrayField(
-				new SchemaField({
-					name: new StringField({ required: true, blank: false, initial: "New Skill" }),
-					description: new HTMLField({ required: true, blank: true }),
-					level: new NumberField({ required: true, integer: true, min: 0, max: 4, initial: 0 }),
-					mod: new StringField({ required: true, blank: false, initial: "d4" }),
-				})
-			),
 		};
 	}
 }
@@ -60,6 +63,14 @@ class ItemDataModel extends foundry.abstract.TypeDataModel {
 		return {
 			name: new StringField({ required: true, blank: false, initial: "New Item" }),
 			description: new HTMLField({ required: true, blank: true }),
+		};
+	}
+}
+
+class BuyableItemDataModel extends ItemDataModel {
+	static defineSchema() {
+		return {
+			...super.defineSchema(),
 			rarity: new StringField({
 				required: true,
 				blank: false,
@@ -71,18 +82,41 @@ class ItemDataModel extends foundry.abstract.TypeDataModel {
 	}
 }
 
-export class WeaponDataModel extends ItemDataModel {
+export class WeaponDataModel extends BuyableItemDataModel {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
+			material: new StringField({ required: true, blank: false, initial: "iron" }),
 		};
 	}
 }
 
-export class ToolDataModel extends ItemDataModel {
+export class ToolDataModel extends BuyableItemDataModel {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
+			material: new StringField({ required: true, blank: false, initial: "iron" }),
+		};
+	}
+}
+
+export class ResourceDataModel extends BuyableItemDataModel {
+	static defineSchema() {
+		return {
+			...super.defineSchema(),
+			type: new StringField({ required: true, blank: false, initial: "ore" }),
+			created_date: new StringField({ required: true, blank: false, initial: "" }),
+			expiration_date: new StringField({ required: true, blank: false, initial: "" }),
+		};
+	}
+}
+
+export class SkillDataModel extends ItemDataModel {
+	static defineSchema() {
+		return {
+			name: new StringField({ required: true, blank: false, initial: "New Skill" }),
+			description: new HTMLField({ required: true, blank: true }),
+			level: new NumberField({ required: true, integer: true, min: 0, max: 5, initial: 0 }),
 		};
 	}
 }

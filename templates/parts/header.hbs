@@ -1,0 +1,59 @@
+<header class="sheet-header">
+	<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+	<div class="header-fields">
+		<div class="grid grid-2">
+			<h1 class="charname">
+				<input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'sheet.name'}}" />
+			</h1>
+			<h1 class="profession">
+				<input
+					name="system.background.profession"
+					type="text"
+					value="{{system.background.profession}}"
+					placeholder="{{localize 'sheet.profession'}}"
+				/>
+			</h1>
+			<h1 class="hold">
+				<input
+					name="system.background.hold"
+					type="text"
+					value="{{system.background.hold}}"
+					placeholder="{{localize 'sheet.hold'}}"
+				/>
+			</h1>
+			<h1 class="ancestry">
+				<input
+					name="system.background.ancestry"
+					type="text"
+					value="{{system.background.ancestry}}"
+					placeholder="{{localize 'sheet.ancestry'}}"
+				/>
+			</h1>
+		</div>
+		<div class="resources grid grid-3col">
+			<div class="resource flex-group-center">
+				<label for="system.wounds.value" class="resource-label">{{localize "sheet.wounds"}}</label>
+				<div class="resource-content flexrow flex-center flex-between">
+					<input
+						type="text"
+						name="system.resources.wounds.value"
+						value="{{system.resources.wounds.value}}"
+						data-dtype="Number"
+					/>
+					<span> / </span>
+					<input
+						type="text"
+						name="system.resources.wounds.max"
+						value="{{system.resources.wounds.max}}"
+						data-dtype="Number"
+					/>
+				</div>
+			</div>
+			<div></div>
+			<div class="resource flex-group-center">
+				<label for="system.gold" class="resource-label">{{localize "sheet.gold"}}</label>
+				<input type="text" name="system.gold" value="{{system.gold}}" data-dtype="Number" />
+			</div>
+		</div>
+	</div>
+</header>

@@ -23,44 +23,31 @@ export class SystemActor extends Actor {
 	 * is queried and has a roll executed directly from it).
 	 */
 	prepareDerivedData() {
+		super.prepareDerivedData();
 		const actorData = this;
 
 		// Make separate methods for each Actor type (character, npc, etc.) to keep
 		// things organized.
-		this._prepareCharacterData(actorData);
+		if (actorData.type === "dwarf") {
+			this._prepareDwarfData(actorData);
+		}
 	}
 
 	/**
 	 * Prepare Character type specific data
 	 */
-	_prepareCharacterData(actorData) {
-		if (actorData.type !== "dwarf") return;
-
-		for (let [key, skill] of Object.entries(actorData.system.skills)) {
-			if (skill.level === 0) skill.mod = "d4";
-			else if (skill.level === 1) skill.mod = "d6";
-			else if (skill.level === 2) skill.mod = "d8";
-			else if (skill.level === 3) skill.mod = "d10";
-			else if (skill.level === 4) skill.mod = "d12";
-		}
-	}
+	_prepareDwarfData(actorData) {}
 
 	async applyDamage() {
 		damage = 1;
 
-		// Update the health.
 		const { value } = this.system.resources.wounds;
 		await this.update({ "system.resources.wounds.value": value + damage });
 
-		// Log a message.
 		await ChatMessage.implementation.create({
 			content: `${this.name} took damage!`,
 		});
 	}
 }
 
-export class SystemItem extends Item {
-	get isFree() {
-		return this.price < 1;
-	}
-}
+export class SystemItem extends Item {}

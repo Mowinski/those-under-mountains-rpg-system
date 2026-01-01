@@ -1,6 +1,12 @@
 import { SystemActor, SystemItem } from "./module/documents.mjs";
-import { DwarfActorDataModel, WeaponDataModel, ToolDataModel } from "./module/data-models.mjs";
-import { DwarfActorSheet } from "./module/sheet.mjs";
+import {
+	DwarfActorDataModel,
+	WeaponDataModel,
+	ToolDataModel,
+	ResourceDataModel,
+	SkillDataModel,
+} from "./module/data-models.mjs";
+import { DwarfActorSheet } from "./module/dwarf-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./module/templates.mjs";
 
 Hooks.once("init", () => {
@@ -15,7 +21,11 @@ Hooks.once("init", () => {
 	CONFIG.Item.dataModels = {
 		weapon: WeaponDataModel,
 		tool: ToolDataModel,
+		resource: ResourceDataModel,
+		skill: SkillDataModel,
 	};
+
+	CONFIG.Item
 
 	// Configure trackable attributes.
 	CONFIG.Actor.trackableAttributes = {
@@ -31,5 +41,6 @@ Hooks.once("init", () => {
 		label: "tum.SheetClass.DwarfCharacter",
 	});
 
+	console.log("Those Under Mountains | Initialized those-under-mountains system");
 	return preloadHandlebarsTemplates();
 });

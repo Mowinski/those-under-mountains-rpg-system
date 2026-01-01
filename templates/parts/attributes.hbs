@@ -1,0 +1,119 @@
+<section class="grid grid-3col">
+	<div class="ability flexcol flex-group-center">
+		<label
+			for="system.sto"
+			class="resource-label rollable flexlarge align-left"
+			data-roll="d12+@abilities.stoutness"
+			data-label="{{sto}}"
+		>
+			{{sto}}</label>
+		<input type="text" name="system.stoutness" value="{{stoValue}}" data-dtype="Number" />
+	</div>
+
+	<div class="ability flexcol flex-group-center">
+		<label
+			for="system.deftness"
+			class="resource-label rollable flexlarge align-left"
+			data-roll="d12+@abilities.deftness"
+			data-label="{{def}}"
+		>
+			{{def}}</label>
+		<input type="text" name="system.deftness" value="{{defValue}}" data-dtype="Number" />
+	</div>
+
+	<div class="ability flexcol flex-group-center">
+		<label
+			for="system.wisdom"
+			class="resource-label rollable flexlarge align-left"
+			data-roll="d12+@abilities.wisdom"
+			data-label="{{wis}}"
+		>
+			{{wis}}</label>
+		<input type="text" name="system.wisdom" value="{{wisValue}}" data-dtype="Number" />
+	</div>
+</section>
+<h2>{{localize "sheet.armorHeader"}}</h2>
+
+<section class="flexrow">
+	<div class="flexcol flex-group-center">
+		<label for="system.ac" class="resource-label flexlarge align-left">
+			Armor class
+		</label>
+		<input type="text" name="system.armorClass" value="{{system.armorClass}}" data-dtype="Number" />
+	</div>
+	<div class="flex-group-center" style="align-content: center;">
+		-->
+	</div>
+	<div class="flexcol flex-group-center">
+		<label for="system.inspiration" class="resource-label flexlarge align-left">
+			Passive armor class
+		</label>
+		<input type="text" name="system.passiveArmorClass" value="{{system.passiveArmorClass}}" data-dtype="Number" />
+	</div>
+</section>
+
+<section class="flexcol" style="margin-top: 30px">
+	<div class="grid grid-3col">
+		<div>
+			<label for="system.armor.head" class="resource-label align-left">
+				{{localize "sheet.attributes.head"}}
+			</label>
+			<input type="text" name="system.armor.head" value="{{system.armor.head}}" data-dtype="Number" />
+		</div>
+		<div></div>
+		<div>
+			<label for="system.armor.skill" class="resource-label align-left">
+				{{localize "sheet.attributes.skill"}}
+			</label>
+			<input type="text" name="system.armor.skill" value="{{system.armor.skill}}" data-dtype="Number" />
+		</div>
+	</div>
+
+	<div class="grid grid-3col">
+		<div>
+			<label for="system.armor.body" class="resource-label align-left">
+				{{localize "sheet.attributes.body"}}
+			</label>
+			<input type="text" name="system.armor.body" value="{{system.armor.body}}" data-dtype="Number" />
+		</div>
+		<div></div>
+		<div>
+			<label for="system.armor.def" class="resource-label align-left">
+				{{localize "sheet.attributes.def"}}
+			</label>
+			<input type="text" name="system.armor.def" value="{{system.armor.def}}" data-dtype="Number" />
+		</div>
+	</div>
+
+	<div class="grid grid-3col">
+		<div>
+			<label for="system.armor.legs" class="resource-label align-left">
+				{{localize "sheet.attributes.legs"}}
+			</label>
+			<input type="text" name="system.armor.legs" value="{{system.armor.legs}}" data-dtype="Number" />
+		</div>
+		<div></div>
+		<div>
+			<label for="system.armor.misc" class="resource-label align-left">
+				{{localize "sheet.attributes.misc"}}
+			</label>
+			<input type="text" name="system.armor.misc" value="{{system.armor.misc}}" data-dtype="Number" />
+		</div>
+	</div>
+
+	<div class="grid grid-3col">
+		<div>
+			<label for="system.armor.block" class="resource-label align-left">
+				{{localize "sheet.attributes.block"}}
+			</label>
+			<input type="text" name="system.armor.block" value="{{system.armor.block}}" data-dtype="Number" />
+		</div>
+		<div></div>
+		<div>
+			<label for="system.armor.parry" class="resource-label align-left">
+				{{localize "sheet.attributes.parry"}}
+			</label>
+			<input type="text" name="system.armor.parry" value="{{system.armor.parry}}" data-dtype="Number" />
+		</div>
+	</div>
+</section>

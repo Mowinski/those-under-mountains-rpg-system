@@ -238,6 +238,10 @@
 }
 .boilerplate .sheet-tabs {
 	flex: 0;
+	flex-grow: 0;
+}
+.boilerplate .sheet-body .tab {
+	min-height: 30vh;
 }
 .boilerplate .sheet-body,
 .boilerplate .sheet-body .tab,

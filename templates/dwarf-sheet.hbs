@@ -1,58 +1,39 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
 	{{!-- Sheet Header --}}
-	<header class="sheet-header">
-		<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
-		<div class="header-fields">
-			<h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-			<div class="resources grid grid-3col">
-				<div class="resource flex-group-center">
-					<label for="system.wounds.value" class="resource-label">Wounds</label>
-					<div class="resource-content flexrow flex-center flex-between">
-						<input type="text" name="system.wounds.value" value="{{system.wounds.value}}" data-dtype="Number" />
-						<span> / </span>
-						<input type="text" name="system.wounds.max" value="{{system.wounds.max}}" data-dtype="Number" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	{{> "systems/those-under-mountains/templates/parts/header.hbs"}}
 
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-tabs tabs" data-group="primary">
-		<a class="item" data-tab="features">Features</a>
-		<a class="item" data-tab="description">Description</a>
-		<a class="item" data-tab="items">Items</a>
-		<a class="item" data-tab="effects">Effects</a>
+		<a class="item" data-tab="attributes">{{localize "sheet.tab.attributes"}}</a>
+		<a class="item" data-tab="items">{{localize "sheet.tab.items"}}</a>
+		<a class="item" data-tab="skills">{{localize "sheet.tab.skills"}}</a>
+		<a class="item" data-tab="effects">{{localize "sheet.tab.effects"}}</a>
+		<a class="item" data-tab="description">{{localize "sheet.tab.description"}}</a>
 	</nav>
 
 	{{!-- Sheet Body --}}
 	<section class="sheet-body">
 		{{!-- Owned Features Tab --}}
-		<div class="tab features" data-group="primary" data-tab="features">
-			<section class="grid grid-3col">
-				<aside class="sidebar">
-					{{> "systems/those-under-mountains/templates/parts/features-aside.hbs"}}
-				</aside>
-
-				{{!-- For the main features list, span the right two columns --}}
-				<section class="main grid-span-2">
-					{{> "systems/those-under-mountains/templates/parts/features.hbs"}}
-				</section>
-			</section>
+		<div class="tab attributes" data-group="primary" data-tab="attributes">
+			{{> "systems/those-under-mountains/templates/parts/attributes.hbs"}}
 		</div>
 
 		{{!-- Biography Tab --}}
 		<div class="tab biography" data-group="primary" data-tab="description">
-			{{editor enrichedBiography target="system.biography" engine="prosemirror" button=true editable=editable}}
+			{{editor enrichedBiography target="system.background.biography" button=true editable=editable}}
 		</div>
 
+		<div class="tab skills" data-group="primary" data-tab="skills">
+			{{> "systems/those-under-mountains/templates/parts/skills.hbs"}}
+		</div>	
+		
 		{{!-- Owned Items Tab --}}
 		<div class="tab items" data-group="primary" data-tab="items">
 			{{> "systems/those-under-mountains/templates/parts/items.hbs"}}
 		</div>
 
 		{{!-- Active Effects Tab --}}
-		<div class="tab effects flexcol" data-group="primary" data-tab="effects">
+		<div class="tab effects" data-group="primary" data-tab="effects">
 			{{> "systems/those-under-mountains/templates/parts/effects.hbs"}}
 		</div>
 	</section>

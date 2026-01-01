@@ -1,0 +1,37 @@
+{
+    "tum": {
+        "Ability": {
+            "Sto": { "long": "Otyłość", "short": "Sto" },
+            "Def": { "long": "Zwinność", "short": "Def" },
+            "Wis": { "long": "Mądrość", "short": "Wis" }
+        }
+    },
+    "sheet": {
+        "wounds": "Rany",
+        "gold": "Złoto",
+        "name": "Imię",
+        "hold": "Twierdza",
+        "profession": "Profesja",
+        "ancestry": "Rodzina",
+        "ac": "Klasa pancerza",
+        "pac": "Pasywna klasa pancerza",
+        "armorHeader": "Zbroja",
+        "attributes": {
+            "body": "Ciało",
+            "head": "Głowa",
+            "legs": "Nogi",
+            "block": "Blok",
+            "parry": "Unik",
+            "skill": "Umiejętność",
+            "def": "DEF",
+            "misc": "Różne"
+        },
+        "tab": {
+            "attributes": "Atrybuty",
+            "items": "Przedmioty",
+            "description": "Opis",
+            "effects": "Efekty",
+            "skills": "Umiejętności"
+        }
+    }
+}

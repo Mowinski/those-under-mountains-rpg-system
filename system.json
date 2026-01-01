@@ -2,7 +2,7 @@
     "id": "those-under-mountains",
     "title": "Those under mountains rpg system",
     "description": "A human-readable description of your system.",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "compatibility": {
         "minimum": 12,
         "verified": 13
@@ -33,6 +33,11 @@
             "lang": "en",
             "name": "English",
             "path": "lang/en.json"
+        },
+        {
+            "lang": "pl",
+            "name": "Polski",
+            "path": "lang/pl.json"
         }
     ],
     "documentTypes": {
@@ -42,11 +47,13 @@
         },
         "Item": {
             "weapon": { "htmlFields": [ "description" ] },
-            "tool": { "htmlFields": [ "description" ] }
+            "tool": { "htmlFields": [ "description" ] },
+            "resource": { "htmlFields": [ "description" ] },
+            "skill": { "htmlFields": [ "description" ] }
         }
     },
     "socket": false,
-    "initiative": "1d20",
+    "initiative": "1d12",
     "grid": {
         "distance": 5,
         "units": "ft"

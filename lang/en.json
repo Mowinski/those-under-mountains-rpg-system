@@ -1,9 +1,37 @@
 {
     "tum": {
         "Ability": {
-            "Sto": { "long": "Stoutness", "abbr": "Sto" },
-            "Def": { "long": "Deftness", "abbr": "Def" },
-            "Wis": { "long": "Wisdom", "abbr": "Wis" }
+            "Sto": { "long": "Stoutness", "short": "Sto" },
+            "Def": { "long": "Deftness", "short": "Def" },
+            "Wis": { "long": "Wisdom", "short": "Wis" }
+        }
+    },
+    "sheet": {
+        "wounds": "Wounds",
+        "gold": "Gold",
+        "name": "Name",
+        "hold": "Hold",
+        "profession": "Profession",
+        "ancestry": "Ancestry",
+        "ac": "Armor class",
+        "pac": "Passive armor class",
+        "armorHeader": "Armor",
+        "attributes": {
+            "body": "Body",
+            "head": "Head",
+            "legs": "Legs",
+            "block": "Block",
+            "parry": "Parry",
+            "skill": "Skill",
+            "def": "DEF",
+            "misc": "Misc"
+        },
+        "tab": {
+            "attributes": "Attributes",
+            "items": "Items",
+            "description": "Description",
+            "effects": "Effects",
+            "skills": "Skills"
         }
     }
 }
