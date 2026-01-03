@@ -6,6 +6,12 @@
             "Wis": { "long": "Mądrość", "short": "Wis" }
         }
     },
+    "DOCUMENT": {
+        "createSkill": "Utwórz umiejętność",
+        "newSkill": "Nowa umiejętność",
+        "updateSkill": "Edytuj umiejętność",
+        "deleteSkill": "Usuń umiejętność"
+    },
     "sheet": {
         "wounds": "Rany",
         "gold": "Złoto",
@@ -32,6 +38,25 @@
             "description": "Opis",
             "effects": "Efekty",
             "skills": "Umiejętności"
+        },
+        "item": {
+            "description": "Opis",
+            "name": "Nazwa",
+            "level": "Poziom",
+            "promote": "Awansuj",
+            "demote": "Degraduj"
+        },
+        "skill": {
+            "name": "Nazwa",
+            "description": "Opis"
+        },
+        "itemLevel": {
+            "Level0": "Nowicjusz",
+            "Level1": "Biegły",
+            "Level2": "Adept",
+            "Level3": "Ekspert",
+            "Level4": "Mistrz",
+            "Level5": "Arcymistrz"
         }
     }
 }

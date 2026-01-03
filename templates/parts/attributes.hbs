@@ -3,10 +3,12 @@
 		<label
 			for="system.sto"
 			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+@abilities.stoutness"
+			data-roll="d12+{{stoValue}}"
 			data-label="{{sto}}"
 		>
-			{{sto}}</label>
+			<i class="fa-solid fa-dice"></i>
+			{{sto}}
+		</label>
 		<input type="text" name="system.stoutness" value="{{stoValue}}" data-dtype="Number" />
 	</div>
 
@@ -14,10 +16,12 @@
 		<label
 			for="system.deftness"
 			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+@abilities.deftness"
+			data-roll="d12+{{defValue}}"
 			data-label="{{def}}"
 		>
-			{{def}}</label>
+			<i class="fa-solid fa-dice"></i>
+			{{def}}
+		</label>
 		<input type="text" name="system.deftness" value="{{defValue}}" data-dtype="Number" />
 	</div>
 
@@ -25,10 +29,12 @@
 		<label
 			for="system.wisdom"
 			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+@abilities.wisdom"
+			data-roll="d12+{{wisValue}}"
 			data-label="{{wis}}"
 		>
-			{{wis}}</label>
+			<i class="fa-solid fa-dice"></i>
+			{{wis}}
+		</label>
 		<input type="text" name="system.wisdom" value="{{wisValue}}" data-dtype="Number" />
 	</div>
 </section>

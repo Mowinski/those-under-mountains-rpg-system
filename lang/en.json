@@ -6,6 +6,12 @@
             "Wis": { "long": "Wisdom", "short": "Wis" }
         }
     },
+    "DOCUMENT": {
+        "createSkill": "Create skill",
+        "newSkill": "New Skill",
+        "updateSkill": "Update Skill",
+        "deleteSkill": "Delete Skill"
+    },
     "sheet": {
         "wounds": "Wounds",
         "gold": "Gold",
@@ -32,6 +38,25 @@
             "description": "Description",
             "effects": "Effects",
             "skills": "Skills"
+        },
+        "item": {
+            "description": "Description",
+            "name": "Name",
+            "level": "Level",
+            "promote": "Promote",
+            "demote": "Demote"
+        },
+        "skill": {
+            "name": "Name",
+            "description": "Description"
+        },
+        "itemLevel": {
+            "Level0": "Novice",
+            "Level1": "Proficient",
+            "Level2": "Skilled",
+            "Level3": "Expert",
+            "Level4": "Master",
+            "Level5": "Grandmaster"
         }
     }
 }

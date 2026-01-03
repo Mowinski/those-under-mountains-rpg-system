@@ -2,7 +2,7 @@
     "id": "those-under-mountains",
     "title": "Those under mountains rpg system",
     "description": "A human-readable description of your system.",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "compatibility": {
         "minimum": 12,
         "verified": 13
@@ -62,5 +62,5 @@
     "secondaryTokenAttribute": "resources.power",
     "url": "https://raw.githubusercontent.com/Mowinski/those-under-mountains-rpg-system/refs/heads/main/system.json",
     "manifest": "https://raw.githubusercontent.com/Mowinski/those-under-mountains-rpg-system/refs/heads/main/system.json",
-    "download": "https://github.com/Mowinski/those-under-mountains-rpg-system/releases/download/v0.1.9/release.zip"
+    "download": "https://github.com/Mowinski/those-under-mountains-rpg-system/releases/download/v0.1.11/release.zip"
 }

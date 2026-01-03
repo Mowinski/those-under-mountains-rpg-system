@@ -7,6 +7,7 @@ import {
 	SkillDataModel,
 } from "./module/data-models.mjs";
 import { DwarfActorSheet } from "./module/dwarf-sheet.mjs";
+import { TUMItemSheet } from "./module/item-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./module/templates.mjs";
 
 Hooks.once("init", () => {
@@ -25,7 +26,7 @@ Hooks.once("init", () => {
 		skill: SkillDataModel,
 	};
 
-	CONFIG.Item
+	CONFIG.Item;
 
 	// Configure trackable attributes.
 	CONFIG.Actor.trackableAttributes = {
@@ -39,6 +40,11 @@ Hooks.once("init", () => {
 	Actors.registerSheet("tum", DwarfActorSheet, {
 		makeDefault: true,
 		label: "tum.SheetClass.DwarfCharacter",
+	});
+	Items.unregisterSheet("core", ItemSheet);
+	Items.registerSheet("tum", TUMItemSheet, {
+		makeDefault: true,
+		label: "tum.SheetClass.Item",
 	});
 
 	console.log("Those Under Mountains | Initialized those-under-mountains system");

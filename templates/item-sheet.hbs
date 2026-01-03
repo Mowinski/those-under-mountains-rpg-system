@@ -1,0 +1,32 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+	<header class="sheet-header">
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+		<div class="header-fields">
+			<h1 class="charname">
+				<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" />
+			</h1>
+		</div>
+        <div>
+            <a class="rollable" data-roll-type="item" data-roll="{{modifier}}" data-label="{{item.name}}">
+                <i class="fa-solid fa-dice"></i>
+                {{localize "sheet.item.roll"}} {{modifier}}
+            </a>
+        </div>
+	</header>
+	<hr />
+	<section class="sheet-body">
+		<div>
+			<label for="system.description">{{localize "sheet.item.description"}}</label>
+			<textarea name="system.description">{{item.system.description}}</textarea>
+		</div>
+		<div>
+			{{localize "sheet.item.level"}}:
+			{{currentLevel}}
+			<div class="flexrow">
+				<button class="promote-item" {{#if (gt item.system.level 4)}}disabled{{/if}}>{{localize "sheet.item.promote"}}</button>
+				<button class="demote-item" {{#if (lt item.system.level 1)}}disabled{{/if}}>{{localize "sheet.item.demote"}}</button>
+			</div>
+		</div>
+
+	</section>
+</form>

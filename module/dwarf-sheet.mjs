@@ -1,3 +1,5 @@
+import { skillDices, levelChoices } from "./consts.mjs";
+
 export class DwarfActorSheet extends ActorSheet {
 	/** @override */
 	static get defaultOptions() {
@@ -60,12 +62,15 @@ export class DwarfActorSheet extends ActorSheet {
 		const skills = [];
 
 		for (let i of context.items) {
+			console.log("Processing item:", i);
 			i.img = i.img || DEFAULT_TOKEN;
 			if (i.type === "weapon") {
 				weapon.push(i);
 			} else if (i.type === "tool") {
 				tool.push(i);
 			} else if (i.type === "skill") {
+				i.currentLevel = game.i18n.localize(levelChoices[i.system.level] || "sheet.itemLevel.Level1");
+				i.dice = skillDices[i.system.level] || "d4";
 				skills.push(i);
 			}
 		}
@@ -122,17 +127,8 @@ export class DwarfActorSheet extends ActorSheet {
 		// Add Inventory Item
 		html.on("click", ".item-create", this._onItemCreate.bind(this));
 
-		html.on("click", ".skill-create", this._onItemCreate.bind(this));
-
 		// Delete Inventory Item
-		html.on("click", ".item-delete", (ev) => {
-			const li = $(ev.currentTarget).parents(".item");
-			const item = this.actor.items.get(li.data("itemId"));
-			item.delete();
-			li.slideUp(200, () => this.render(false));
-		});
-
-		html.on("click", ".skill-delete", this._onSkillDelete.bind(this));
+		html.on("click", ".item-delete", this._onItemDelete.bind(this));
 
 		// Active Effect management
 		html.on("click", ".effect-control", (ev) => {
@@ -163,35 +159,25 @@ export class DwarfActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 
-	async _onSkillDelete(event) {
-		const li = $(event.currentTarget).parents(".skill");
-		const skillId = li.data("skillId");
-		console.log("Deleting skill with ID:", skillId);
-
-		const updatedSkills = this.actor.system.skills.filter((s) => s._id !== skillId);
-		await this.actor.update({ "system.skills": updatedSkills });
-
+	async _onItemDelete(event) {
+		const li = $(event.currentTarget).parents(".item");
+		const item = this.actor.items.get(li.data("itemId"));
+		item.delete();
 		li.slideUp(200, () => this.render(false));
 	}
 
-	async _onSkillCreate(event) {
+	_onRoll(event) {
 		event.preventDefault();
-		const header = event.currentTarget;
-		const type = header.dataset.type;
+		const element = event.currentTarget;
+		const dataset = element.dataset;
 
-		const skillData = {
-			_id: foundry.utils.randomID(),
-			name: `New ${type.capitalize()}`,
-			description: "",
-			level: 0,
-		};
-
-		const updatedSkills = [...this.actor.system.skills, skillData];
-		await this.actor.update({ "system.skills": updatedSkills });
-	}
-
-	async _onRoll(event) {
-		event.preventDefault();
-		console.log("Roll handler not yet implemented.");
+		if (dataset.roll) {
+			let roll = new Roll(dataset.roll, this);
+			let label = dataset.label ? `Rolling ${dataset.label}` : "";
+			roll.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+				flavor: label,
+			});
+		}
 	}
 }

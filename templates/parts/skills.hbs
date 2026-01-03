@@ -1,28 +1,30 @@
 <ol class="skills-list">
 	<li class="skill flexrow skills-header">
-		<div class="skill-name">{{localize "Name"}}</div>
-		<div class="skill-formula">{{localize "Roll Formula"}}</div>
+		<div class="skill-name">{{localize "sheet.skill.name"}}</div>
+		<div class="skill-formula">{{localize "sheet.skill.description"}}</div>
 		<div class="skill-controls">
-			<a class="skill-control skill-create" title="{{localize 'DOCUMENT.Create' type="Skill"}}" data-type="skill">
+			<a class="skill-control item-create" title="{{localize 'DOCUMENT.createSkill'}}" data-type="skill">
 				<i class="fas fa-plus"></i>
-				{{localize "DOCUMENT.New" type="skill"}}
+				{{localize "DOCUMENT.newSkill"}}
 			</a>
 		</div>
 	</li>
 
-	{{#each system.skills as |skill|}}
-		<li class="skill flexrow" data-skill-id="{{skill._id}}">
+	{{#each skills as |skill|}}
+		<li class="item flexrow" data-item-id="{{skill._id}}">
 			<div class="skill-name">
-				<a class="rollable" data-roll-type="skill">
+				<a class="rollable" data-roll="{{skill.dice}}" data-label="{{skill.name}}">
+					<i class="fa-solid fa-dice"></i>
 					{{skill.name}}
+					({{skill.currentLevel}})
 				</a>
 			</div>
-			<div class="item-formula item-prop">{{skill.description}}</div>
+			<div class="item-formula item-prop">{{skill.system.description}}</div>
 			<div class="item-controls">
-				<a class="item-control skill-edit" title="{{localize 'DOCUMENT.Update' type="Skill"}}">
+				<a class="item-control item-edit" title="{{localize 'DOCUMENT.updateSkill'}}">
 					<i class="fas fa-edit"></i>
 				</a>
-				<a class="item-control skill-delete" title="{{localize 'DOCUMENT.Delete' type="Skill"}}">
+				<a class="item-control item-delete" title="{{localize 'DOCUMENT.deleteSkill'}}">
 					<i class="fas fa-trash"></i>
 				</a>
 			</div>
