@@ -1,32 +1,38 @@
 <form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
 	<header class="sheet-header">
 		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
-		<div class="header-fields">
+		<div class="header-fields flexcol">
 			<h1 class="charname">
 				<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" />
 			</h1>
+			<div class="flexrow">
+				<div style="flex: auto;">
+					{{localize "sheet.skill.exp"}}: {{item.system.exp}} / {{item.nextLevel}} ({{currentLevel}})
+				</div>
+				<div style="flex: auto; text-align: right">
+					<a class="rollable" data-roll-type="item" data-label="{{item.name}}">
+						<i class="fa-solid fa-dice"></i>
+						{{item.dice}}
+					</a>
+				</div>
+			</div>
+			<div class="flexrow" style="margin-top:10px;">
+				<button class="promote-item" {{#if (gt item.system.level 4)}}disabled{{/if}}>{{localize "sheet.item.promote"}}</button>
+				<button class="demote-item" {{#if (lt item.system.exp 1)}}disabled{{/if}}>{{localize "sheet.item.demote"}}</button>
+			</div>
 		</div>
-        <div>
-            <a class="rollable" data-roll-type="item" data-roll="{{modifier}}" data-label="{{item.name}}">
-                <i class="fa-solid fa-dice"></i>
-                {{localize "sheet.item.roll"}} {{modifier}}
-            </a>
-        </div>
 	</header>
 	<hr />
 	<section class="sheet-body">
 		<div>
 			<label for="system.description">{{localize "sheet.item.description"}}</label>
-			<textarea name="system.description">{{item.system.description}}</textarea>
+			{{editor
+				system.description
+				target="system.description"
+				engine="prosemirror"
+				button=true
+				editable=editable
+			}}
 		</div>
-		<div>
-			{{localize "sheet.item.level"}}:
-			{{currentLevel}}
-			<div class="flexrow">
-				<button class="promote-item" {{#if (gt item.system.level 4)}}disabled{{/if}}>{{localize "sheet.item.promote"}}</button>
-				<button class="demote-item" {{#if (lt item.system.level 1)}}disabled{{/if}}>{{localize "sheet.item.demote"}}</button>
-			</div>
-		</div>
-
 	</section>
 </form>

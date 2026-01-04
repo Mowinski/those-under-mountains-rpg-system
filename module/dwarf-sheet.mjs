@@ -1,4 +1,5 @@
-import { skillDices, levelChoices } from "./consts.mjs";
+import { levelChoices, flattenedSkillList } from "./consts.mjs";
+import { htmlToPlainText } from "./templates.mjs";
 
 export class DwarfActorSheet extends ActorSheet {
 	/** @override */
@@ -61,16 +62,17 @@ export class DwarfActorSheet extends ActorSheet {
 		const tool = [];
 		const skills = [];
 
-		for (let i of context.items) {
+		for (let i of this.actor.items) {
 			console.log("Processing item:", i);
+			console.log(this.actor.items.get(i._id), "Found item in actor items");
 			i.img = i.img || DEFAULT_TOKEN;
 			if (i.type === "weapon") {
 				weapon.push(i);
 			} else if (i.type === "tool") {
 				tool.push(i);
 			} else if (i.type === "skill") {
-				i.currentLevel = game.i18n.localize(levelChoices[i.system.level] || "sheet.itemLevel.Level1");
-				i.dice = skillDices[i.system.level] || "d4";
+				i.currentLevel = game.i18n.localize(levelChoices[i.level] || "sheet.itemLevel.Level1");
+				i.plainDescription = htmlToPlainText(i.system.description);
 				skills.push(i);
 			}
 		}
@@ -78,7 +80,8 @@ export class DwarfActorSheet extends ActorSheet {
 		// Assign and return
 		context.weapon = weapon;
 		context.tool = tool;
-		context.skills = skills;
+		context.skills = skills.sort((a, b) => b.system.exp - a.system.exp);
+		context.skillsList = flattenedSkillList;
 	}
 
 	_prepareActiveEffectCategories(context, effects) {
@@ -126,6 +129,7 @@ export class DwarfActorSheet extends ActorSheet {
 
 		// Add Inventory Item
 		html.on("click", ".item-create", this._onItemCreate.bind(this));
+		html.on("click", ".skill-create", this._onSkillCreate.bind(this));
 
 		// Delete Inventory Item
 		html.on("click", ".item-delete", this._onItemDelete.bind(this));
@@ -140,6 +144,21 @@ export class DwarfActorSheet extends ActorSheet {
 		// Rollable abilities.
 		html.on("click", ".rollable", this._onRoll.bind(this));
 	}
+	async _onSkillCreate(event) {
+		event.preventDefault();
+		const skillName = $('[name="newSkill"]').val();
+		const header = event.currentTarget;
+		const data = duplicate(header.dataset);
+
+		const itemData = {
+			name: skillName,
+			type: "skill",
+			data: data,
+		};
+
+		console.log("Creating skill with data:", itemData);
+		return await Item.create(itemData, { parent: this.actor });
+	}
 
 	async _onItemCreate(event) {
 		event.preventDefault();
@@ -147,6 +166,7 @@ export class DwarfActorSheet extends ActorSheet {
 
 		const type = header.dataset.type;
 		const data = duplicate(header.dataset);
+
 		const name = `New ${type.capitalize()}`;
 		const itemData = {
 			name: name,
@@ -155,6 +175,7 @@ export class DwarfActorSheet extends ActorSheet {
 		};
 
 		delete itemData.data["type"];
+
 		console.log("Creating item with data:", itemData);
 		return await Item.create(itemData, { parent: this.actor });
 	}
@@ -173,11 +194,17 @@ export class DwarfActorSheet extends ActorSheet {
 
 		if (dataset.roll) {
 			let roll = new Roll(dataset.roll, this);
-			let label = dataset.label ? `Rolling ${dataset.label}` : "";
+			let label = dataset.label ? game.i18n.format("sheet.rollDice", { label: dataset.label }) : "";
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),
 				flavor: label,
 			});
+		}
+		if (dataset.rollId) {
+			const item = this.actor.items.get(dataset.rollId);
+			if (item) {
+				item.roll(this.actor);
+			}
 		}
 	}
 }

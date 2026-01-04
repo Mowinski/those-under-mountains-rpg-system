@@ -1,0 +1,33 @@
+<section class="description-section grid grid-2col">
+	<div>
+		<h1>{{localize "sheet.description.character"}}</h1>
+		{{editor
+			system.background.character
+			target="system.background.character"
+			engine="prosemirror"
+			button=true
+			editable=editable
+		}}
+	</div>
+	<div>
+		<h1>{{localize "sheet.description.visual"}}</h1>
+		{{editor
+			system.background.visual
+			target="system.background.visual"
+			engine="prosemirror"
+			button=true
+			editable=editable
+		}}
+	</div>
+</section>
+<hr />
+<div>
+	<h1>{{localize "sheet.description.biography"}}</h1>
+	{{editor
+		system.background.biography
+		target="system.background.biography"
+		engine="prosemirror"
+		button=true
+		editable=editable
+	}}
+</div>

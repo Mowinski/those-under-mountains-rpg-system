@@ -42,6 +42,8 @@ export class DwarfActorDataModel extends ActorDataModel {
 			gold: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			background: new SchemaField({
 				biography: new HTMLField({ required: true, blank: true }),
+				visual: new HTMLField({ required: true, blank: true }),
+				character: new HTMLField({ required: true, blank: true }),
 				hold: new StringField({ required: true, blank: true }),
 				ancestry: new StringField({ required: true, blank: true }),
 				profession: new StringField({ required: true, blank: true }),
@@ -116,7 +118,14 @@ export class SkillDataModel extends ItemDataModel {
 		return {
 			name: new StringField({ required: true, blank: false, initial: "New Skill" }),
 			description: new HTMLField({ required: true, blank: true }),
-			level: new NumberField({ required: true, integer: true, min: 0, max: 5, initial: 0 }),
+			exp: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 		};
+	}
+
+	static migrateData(source) {
+		if (Number.isNumeric(source.level)) {
+			source.exp = source.level == 0 ? 0 : Math.pow(2, source.level) - 1;
+		}
+		return super.migrateData(source);
 	}
 }

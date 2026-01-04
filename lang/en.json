@@ -10,7 +10,40 @@
         "createSkill": "Create skill",
         "newSkill": "New Skill",
         "updateSkill": "Update Skill",
-        "deleteSkill": "Delete Skill"
+        "deleteSkill": "Delete Skill",
+        "newSkillName": "New Skill"
+    },
+    "skill": {
+        "adventure": {
+            "athletic": "Athletics",
+            "diplomacy": "Diplomacy",
+            "investigation": "Investigation",
+            "perception": "Perception",
+            "stealth": "Stealth",
+            "riding": "Riding"
+        },
+        "trade": {
+            "blacksmith": "Blacksmithing",
+            "brewing": "Brewing",
+            "butchery": "Butchery",
+            "carpentry": "Carpentry",
+            "cooking": "Cooking",
+            "engineering": "Engineering",
+            "farming": "Farming",
+            "gemCutting": "Gem Cutting",
+            "herbalism": "Herbalism",
+            "hunting": "Hunting",
+            "masonry": "Masonry",
+            "mining": "Mining",
+            "pottery": "Pottery"
+        },
+        "martial": {
+            "duelist": "Duelist",
+            "marksdwarf": "Marksdwarf",
+            "pikedwarf": "Pikedwarf",
+            "poledwarf": "Poledwarf",
+            "shielddwarf": "Shielddwarf"
+        }
     },
     "sheet": {
         "wounds": "Wounds",
@@ -22,6 +55,8 @@
         "ac": "Armor class",
         "pac": "Passive armor class",
         "armorHeader": "Armor",
+        "roll": "Roll",
+        "rollDice": "Roll for {label}",
         "attributes": {
             "body": "Body",
             "head": "Head",
@@ -48,7 +83,14 @@
         },
         "skill": {
             "name": "Name",
-            "description": "Description"
+            "description": "Description",
+            "exp": "Experience",
+            "formula": "Formula"
+        },
+        "description": {
+            "biography": "Biography",
+            "visual": "Visual",
+            "character": "Character"
         },
         "itemLevel": {
             "Level0": "Novice",

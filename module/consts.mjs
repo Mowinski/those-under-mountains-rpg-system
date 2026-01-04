@@ -1,9 +1,9 @@
 export const skillDices = {
-	0: "1d4",
-	1: "1d4+2",
-	2: "1d6+2",
-	3: "1d8+2",
-	4: "1d12+2",
+	0: "1d4", // Novice
+	1: "1d4+2", // Proficient
+	2: "1d6+3", // Skilled
+	3: "1d8+4", // Expert
+	4: "1d10+5",
 };
 
 export const levelChoices = {
@@ -14,3 +14,40 @@ export const levelChoices = {
 	4: "sheet.itemLevel.Level4",
 	5: "sheet.itemLevel.Level5",
 };
+
+export const skillList = {
+	adventure: {
+		athletic: "skill.adventure.athletic",
+		diplomacy: "skill.adventure.diplomacy",
+		investigation: "skill.adventure.investigation",
+		perception: "skill.adventure.perception",
+		stealth: "skill.adventure.stealth",
+		riding: "skill.adventure.riding",
+	},
+	trade: {
+		blacksmith: "skill.trade.blacksmith",
+		brewing: "skill.trade.brewing",
+		butchery: "skill.trade.butchery",
+		carpentry: "skill.trade.carpentry",
+		cooking: "skill.trade.cooking",
+		engineering: "skill.trade.engineering",
+		farming: "skill.trade.farming",
+		gemCutting: "skill.trade.gemCutting",
+		herbalism: "skill.trade.herbalism",
+		hunting: "skill.trade.hunting",
+		masonry: "skill.trade.masonry",
+		mining: "skill.trade.mining",
+		pottery: "skill.trade.pottery",
+	},
+	martial: {
+		duelist: "skill.martial.duelist",
+		marksdwarf: "skill.martial.marksdwarf",
+		pikedwarf: "skill.martial.pikedwarf",
+		poledwarf: "skill.martial.poledwarf",
+		shielddwarf: "skill.martial.shielddwarf",
+	},
+};
+
+export const flattenedSkillList = Object.values(skillList).reduce((acc, category) => {
+	return { ...acc, ...category };
+}, {});

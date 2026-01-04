@@ -4,6 +4,9 @@
 	font-family: "Roboto", sans-serif;
 }
 
+.h-full {
+	height: 100%;
+}
 .rollable:hover,
 .rollable:focus {
 	color: #000;
@@ -246,6 +249,7 @@
 .boilerplate .sheet-body,
 .boilerplate .sheet-body .tab,
 .boilerplate .sheet-body .tab .editor {
+	min-height: 300px;
 	height: 100%;
 }
 .boilerplate .tox .tox-editor-container {

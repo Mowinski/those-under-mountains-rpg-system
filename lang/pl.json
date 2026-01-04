@@ -10,7 +10,40 @@
         "createSkill": "Utwórz umiejętność",
         "newSkill": "Nowa umiejętność",
         "updateSkill": "Edytuj umiejętność",
-        "deleteSkill": "Usuń umiejętność"
+        "deleteSkill": "Usuń umiejętność",
+        "newSkillName": "Nowa umiejętność"
+    },
+    "skill": {
+        "adventure": {
+            "athletic": "Atletyka",
+            "diplomacy": "Dyplomacja",
+            "investigation": "Śledztwo",
+            "perception": "Percepcja",
+            "stealth": "Skradanie się",
+            "riding": "Jeździectwo"
+        },
+        "trade": {
+            "blacksmith": "Kowalstwo",
+            "brewing": "Piwowarstwo",
+            "butchery": "Rzeźnictwo",
+            "carpentry": "Ciesielstwo",
+            "cooking": "Gotowanie",
+            "engineering": "Inżynieria",
+            "farming": "Uprawa roli",
+            "gemCutting": "Jubilerstwo",
+            "herbalism": "Zielarstwo",
+            "hunting": "Łowiectwo",
+            "masonry": "Kamieniarstwo",
+            "mining": "Górnictwo",
+            "pottery": "Garncarstwo"
+        },
+        "martial": {
+            "duelist": "Fechtunek",
+            "marksdwarf": "Krasnoludzki strzelec",
+            "pikedwarf": "Krasnoludzki pikinier",
+            "poledwarf": "Krasnoludzka broń drzewcowa",
+            "shielddwarf": "Krasnoludzka tarcza"
+        }
     },
     "sheet": {
         "wounds": "Rany",
@@ -22,6 +55,8 @@
         "ac": "Klasa pancerza",
         "pac": "Pasywna klasa pancerza",
         "armorHeader": "Zbroja",
+        "roll": "Rzut",
+        "rollDice": "Rzut na {label}",
         "attributes": {
             "body": "Ciało",
             "head": "Głowa",
@@ -48,7 +83,14 @@
         },
         "skill": {
             "name": "Nazwa",
-            "description": "Opis"
+            "description": "Opis",
+            "exp": "Doświadczenie",
+            "formula": "Formuła"
+        },
+        "description": {
+            "biography": "Biografia",
+            "visual": "Wygląd",
+            "character": "Charakter"
         },
         "itemLevel": {
             "Level0": "Nowicjusz",

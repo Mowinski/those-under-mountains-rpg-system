@@ -1,3 +1,5 @@
+import { skillDices } from "./consts.mjs";
+
 export class SystemActor extends Actor {
 	prepareData() {
 		// Prepare data for the actor. Calling the super version of this executes
@@ -50,4 +52,21 @@ export class SystemActor extends Actor {
 	}
 }
 
-export class SystemItem extends Item {}
+export class SystemItem extends Item {
+	prepareDerivedData() {
+		super.prepareDerivedData();
+		this.level = Math.max(0, Math.floor(Math.log2(this.system.exp + 1)) - 1);
+		this.nextLevel = Math.pow(2, this.level + 2) - 1;
+
+		this.dice = skillDices[this.level] || "d4";
+	}
+
+	async roll(actor) {
+		let roll = new Roll(this.dice, this);
+		let label = this.name ? game.i18n.format("sheet.rollDice", { label: this.name }) : "";
+		roll.toMessage({
+			speaker: ChatMessage.getSpeaker({ actor: actor }),
+			flavor: label,
+		});
+	}
+}
