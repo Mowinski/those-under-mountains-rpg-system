@@ -1,4 +1,4 @@
-import { levelChoices, skillDices } from "./consts.mjs";
+import {itemQuality, levelChoices} from "./consts.mjs";
 
 export class TUMItemSheet extends ItemSheet {
 	/** @override */
@@ -11,20 +11,26 @@ export class TUMItemSheet extends ItemSheet {
 		});
 	}
 
+	get template() {
+		return `systems/those-under-mountains/templates/item-${this.item.type}-sheet.hbs`;
+	}
+
 	/** @override */
-	getData() {
-		const context = super.getData();
+	getData(options={}) {
+		const context = super.getData(options);
 
 		const itemData = context.document;
 		context.system = itemData.system;
 		context.flags = itemData.flags;
+        context.itemQualities = itemQuality.map(quality => ({label: game.i18n.localize(`sheet.item.quality.${quality}`), value: quality}))
 
-		const calculatedLevel = Math.floor(Math.log2(context.system.exp + 1)) - 1;
-
-		context.levelChoices = levelChoices;
-		context.system.level = Math.max(0, calculatedLevel);
-		context.currentLevel = game.i18n.localize(levelChoices[context.item.level] || "sheet.itemLevel.Level1");
-
+		if (itemData.type === "skill") {
+			const calculatedLevel = Math.floor(Math.log2(context.system.exp + 1)) - 1;
+			context.levelChoices = levelChoices;
+			context.system.level = Math.max(0, calculatedLevel);
+			context.currentLevel = game.i18n.localize(levelChoices[context.item.level] || "sheet.itemLevel.Level1");
+		}
+		console.log(context, "Item Sheet Context");
 		return context;
 	}
 

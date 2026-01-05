@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Foundry" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="&lt;Custom&gt;" />
+      <option name="frameworkVersion" value="" />
+      <sourceFilesUrls>
+        <item url="file://$USER_HOME$/Downloads/Foundry VTT Node 13.351/client" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/Foundry VTT Node 13.351/client" />
+    </CLASSES>
+    <DOCUMENTATION>
+      <root url="https://foundryvtt.com/api/index.html" />
+    </DOCUMENTATION>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

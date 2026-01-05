@@ -13,6 +13,16 @@
         "deleteSkill": "Delete Skill",
         "newSkillName": "New Skill"
     },
+    "ancestry": {
+        "Duergar": "Duergar: Dark dwarves",
+        "Espantekatl": "Espantekatl: the Redmane",
+        "FirFriemhe": "Fir Friemhe: the Tuber dwarves",
+        "Fjallafolk": "Fjallafolk: Mountain dwarves",
+        "TheForged": "The Forged: Bronze Dwarves",
+        "Gnomes": "Gnomes: The Tinker dwarves",
+        "LuddenavBrieg": "Luddenav Brieg: Hill Dwarves",
+        "Troglin": "Troglin: Pig-dwarves"
+    },
     "skill": {
         "adventure": {
             "athletic": "Athletics",
@@ -52,6 +62,7 @@
         "hold": "Hold",
         "profession": "Profession",
         "ancestry": "Ancestry",
+        "movementSpeed": "Movement speed [ft/ture]",
         "ac": "Armor class",
         "pac": "Passive armor class",
         "armorHeader": "Armor",
@@ -79,13 +90,30 @@
             "name": "Name",
             "level": "Level",
             "promote": "Promote",
-            "demote": "Demote"
+            "demote": "Demote",
+            "type": "Type",
+            "formula": "Formula (e.g. 1d6+@attributes.wis)",
+            "material": "Material",
+            "qualityLabel": "Quality",
+            "price": "Price",
+            "quality": {
+              "normal": "Normal",
+              "good": "Good",
+              "perfect": "Perfect"
+            },
+            "assetValue": "Asset value {value} gp",
+            "resourceType": "Resource type",
+            "created_date": "Created date",
+            "expiration_date": "Expiration date",
+            "total": "Total value: {value} gp",
+            "value": "{value} gp"
         },
         "skill": {
             "name": "Name",
             "description": "Description",
             "exp": "Experience",
-            "formula": "Formula"
+            "formula": "Formula",
+            "total": "Total level: {value}"
         },
         "description": {
             "biography": "Biography",

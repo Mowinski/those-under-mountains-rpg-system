@@ -1,4 +1,4 @@
-import { levelChoices, flattenedSkillList } from "./consts.mjs";
+import { levelChoices, flattenedSkillList, ancestries } from "./consts.mjs";
 import { htmlToPlainText } from "./templates.mjs";
 
 export class DwarfActorSheet extends ActorSheet {
@@ -26,6 +26,7 @@ export class DwarfActorSheet extends ActorSheet {
 		// sheets are the actor object, the data object, whether or not it's
 		// editable, the items array, and the effects array.
 		const context = super.getData();
+		context.ancestries = ancestries;
 		const actorData = context.document;
 
 		context.system = actorData.system;
@@ -58,28 +59,39 @@ export class DwarfActorSheet extends ActorSheet {
 	 * @return {undefined}
 	 */
 	_prepareItems(context) {
-		const weapon = [];
-		const tool = [];
+		const weapons = [];
+		const tools = [];
 		const skills = [];
+        const resources = [];
+        context.totalResourcesValue = 0;
+        context.totalToolsValue = 0;
+        context.totalWeaponsValue = 0;
+        context.totalExp = 0
 
 		for (let i of this.actor.items) {
-			console.log("Processing item:", i);
-			console.log(this.actor.items.get(i._id), "Found item in actor items");
 			i.img = i.img || DEFAULT_TOKEN;
 			if (i.type === "weapon") {
-				weapon.push(i);
+				weapons.push(i);
+                context.totalWeaponsValue += i.assetValue;
 			} else if (i.type === "tool") {
-				tool.push(i);
+				tools.push(i);
+                context.totalToolsValue += i.assetValue;
 			} else if (i.type === "skill") {
 				i.currentLevel = game.i18n.localize(levelChoices[i.level] || "sheet.itemLevel.Level1");
 				i.plainDescription = htmlToPlainText(i.system.description);
+                context.totalExp += i.system.exp;
 				skills.push(i);
 			}
+            else if (i.type === "resource") {
+                resources.push(i);
+                context.totalResourcesValue += i.assetValue;
+            }
 		}
 
 		// Assign and return
-		context.weapon = weapon;
-		context.tool = tool;
+		context.weapons = weapons;
+		context.tools = tools;
+        context.resources = resources;
 		context.skills = skills.sort((a, b) => b.system.exp - a.system.exp);
 		context.skillsList = flattenedSkillList;
 	}
@@ -118,8 +130,8 @@ export class DwarfActorSheet extends ActorSheet {
 
 		// Render the item sheet for viewing/editing prior to the editable check.
 		html.on("click", ".item-edit", (ev) => {
-			const li = $(ev.currentTarget).parents(".item");
-			const item = this.actor.items.get(li.data("itemId"));
+			const parent = $(ev.currentTarget).parents("tr");
+			const item = this.actor.items.get(parent.data("itemId"));
 			item.sheet.render(true);
 		});
 
@@ -127,11 +139,9 @@ export class DwarfActorSheet extends ActorSheet {
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		// Add Inventory Item
 		html.on("click", ".item-create", this._onItemCreate.bind(this));
 		html.on("click", ".skill-create", this._onSkillCreate.bind(this));
-
-		// Delete Inventory Item
+        html.on("click", ".resource-create", this._onResourceCreate.bind(this));
 		html.on("click", ".item-delete", this._onItemDelete.bind(this));
 
 		// Active Effect management
@@ -141,7 +151,6 @@ export class DwarfActorSheet extends ActorSheet {
 			onManageActiveEffect(ev, document);
 		});
 
-		// Rollable abilities.
 		html.on("click", ".rollable", this._onRoll.bind(this));
 	}
 	async _onSkillCreate(event) {
@@ -180,11 +189,29 @@ export class DwarfActorSheet extends ActorSheet {
 		return await Item.create(itemData, { parent: this.actor });
 	}
 
+    async _onResourceCreate(event) {
+        event.preventDefault();
+        const header = event.currentTarget;
+
+        const type = header.dataset.type;
+
+        const name = `New ${type.capitalize()}`;
+        const itemData = {
+            name: name,
+            type: type,
+            created_date: game.time.worldTime,
+        };
+
+
+        console.log("Creating item with data:", itemData);
+        return await Item.create(itemData, { parent: this.actor });
+    }
+
 	async _onItemDelete(event) {
-		const li = $(event.currentTarget).parents(".item");
-		const item = this.actor.items.get(li.data("itemId"));
+		const parent = $(event.currentTarget).parents("tr");
+		const item = this.actor.items.get(parent.data("itemId"));
 		item.delete();
-		li.slideUp(200, () => this.render(false));
+		parent.slideUp(200, () => this.render(false));
 	}
 
 	_onRoll(event) {
@@ -193,7 +220,7 @@ export class DwarfActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 
 		if (dataset.roll) {
-			let roll = new Roll(dataset.roll, this);
+			let roll = new Roll(dataset.roll, actor);
 			let label = dataset.label ? game.i18n.format("sheet.rollDice", { label: dataset.label }) : "";
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),

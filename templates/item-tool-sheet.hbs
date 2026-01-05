@@ -1,0 +1,38 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+	<header class="sheet-header">
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+		<div class="header-fields flexcol">
+			<h1 class="charname">
+				<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" /><br />
+			</h1>
+		</div>
+	</header>
+	<section class="item-type-details grid grid-col-2">
+		<div>
+			<label for="system.material">{{localize "sheet.item.material"}}</label>
+			<input
+				name="system.material"
+				type="text"
+				value="{{system.material}}"
+				placeholder="{{localize 'sheet.item.material'}}"
+			/>
+		</div>
+        <div>
+            <label for="system.price">{{localize "sheet.item.price"}}</label>
+            <input name="system.price" type="text" value="{{system.price}}" placeholder="{{localize 'sheet.item.price'}}" />
+        </div>
+        <div>
+            <label for="system.quality">{{localize "sheet.item.qualityLabel"}}</label>
+            <select name="system.quality">
+                {{selectOptions itemQualities selected=system.quality localize=true valueAttr="value" labelAttr="label"}}
+            </select>
+        </div>
+	</section>
+	<hr />
+	<section class="sheet-body">
+		<div style="height: 100%">
+			<label for="system.description">{{localize "sheet.item.description"}}</label>
+			{{editor system.description target="system.description" engine="prosemirror" button=true editable=editable}}
+		</div>
+	</section>
+</form>

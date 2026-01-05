@@ -1,9 +1,20 @@
 export const skillDices = {
 	0: "1d4", // Novice
-	1: "1d4+2", // Proficient
-	2: "1d6+3", // Skilled
-	3: "1d8+4", // Expert
-	4: "1d10+5",
+	1: "1d4", // Proficient
+	2: "1d6", // Skilled
+	3: "1d8", // Expert
+	4: "1d10",
+};
+
+export const ancestries = {
+	Duergar: "ancestry.Duergar",
+	Espantekatl: "ancestry.Espantekatl",
+	FirFriemhe: "ancestry.FirFriemhe",
+	Fjallafolk: "ancestry.Fjallafolk",
+	TheForged: "ancestry.TheForged",
+	Gnomes: "ancestry.Gnomes",
+	LuddenavBrieg: "ancestry.LuddenavBrieg",
+	Troglin: "ancestry.Troglin",
 };
 
 export const levelChoices = {
@@ -51,3 +62,5 @@ export const skillList = {
 export const flattenedSkillList = Object.values(skillList).reduce((acc, category) => {
 	return { ...acc, ...category };
 }, {});
+
+export const itemQuality = ["normal", "good", "perfect"]

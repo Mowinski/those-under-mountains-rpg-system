@@ -1,7 +1,7 @@
 {
     "tum": {
         "Ability": {
-            "Sto": { "long": "Otyłość", "short": "Sto" },
+            "Sto": { "long": "Budowa", "short": "Sto" },
             "Def": { "long": "Zwinność", "short": "Def" },
             "Wis": { "long": "Mądrość", "short": "Wis" }
         }
@@ -12,6 +12,16 @@
         "updateSkill": "Edytuj umiejętność",
         "deleteSkill": "Usuń umiejętność",
         "newSkillName": "Nowa umiejętność"
+    },
+    "ancestry": {
+        "Duergar": "Duergar: Dark dwarves",
+        "Espantekatl": "Espantekatl: the Redmane",
+        "FirFriemhe": "Fir Friemhe: the Tuber dwarves",
+        "Fjallafolk": "Fjallafolk: Mountain dwarves",
+        "TheForged": "The Forged: Bronze Dwarves",
+        "Gnomes": "Gnomes: The Tinker dwarves",
+        "LuddenavBrieg": "Luddenav Brieg: Hill Dwarves",
+        "Troglin": "Troglin: Pig-dwarves"
     },
     "skill": {
         "adventure": {
@@ -50,6 +60,7 @@
         "gold": "Złoto",
         "name": "Imię",
         "hold": "Twierdza",
+        "movementSpeed": "Prędkość ruchu [ft/turę]",
         "profession": "Profesja",
         "ancestry": "Rodzina",
         "ac": "Klasa pancerza",
@@ -79,13 +90,30 @@
             "name": "Nazwa",
             "level": "Poziom",
             "promote": "Awansuj",
-            "demote": "Degraduj"
+            "demote": "Degraduj",
+            "type": "Typ",
+            "formula": "Formuła (np. 1d6+@attributes.wis)",
+            "material": "Materiał",
+            "qualityLabel": "Jakość",
+            "price": "Cena",
+            "quality": {
+              "normal": "Normalny",
+              "good": "Dobry",
+              "perfect": "Doskonały"
+            },
+            "assetValue": "Wartość {value} gp",
+            "resourceType": "Typ zasobu",
+            "created_date": "Data utworzenia",
+            "expiration_date": "Data zepsucia",
+            "total": "Wartość całkowita: {value} gp",
+            "value": "{value} gp"
         },
         "skill": {
             "name": "Nazwa",
             "description": "Opis",
             "exp": "Doświadczenie",
-            "formula": "Formuła"
+            "formula": "Formuła",
+            "total": "Łączny poziom: {value}"
         },
         "description": {
             "biography": "Biografia",

@@ -1,10 +1,10 @@
 <table class="skills-list">
-	<thead></thead>
+	<thead>
 		<tr class="skill">
-			<td class="skill-name">{{localize "sheet.skill.name"}}</td>
-			<td class="skill-formula">{{localize "sheet.skill.exp"}}</td>
-			<td>{{localize "sheet.skill.formula"}}</td>
-			<td class="skill-controls"></td>
+			<th class="skill-name">{{localize "sheet.skill.name"}}</th>
+			<th class="skill-formula">{{localize "sheet.skill.exp"}}</th>
+			<th>{{localize "sheet.skill.formula"}}</th>
+			<th class="skill-controls"></th>
 		</tr>
 	</thead>
 
@@ -33,6 +33,11 @@
 			</td>
 		</tr>
 	{{/each}}
+    <tfoot>
+    <tr>
+        <td colspan="4" style="text-align: right">{{localize 'sheet.skill.total' value=totalExp}}</td>
+    </tr>
+    </tfoot>
 </table>
 
 <hr />

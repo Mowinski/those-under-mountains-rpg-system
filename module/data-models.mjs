@@ -1,3 +1,5 @@
+import {itemQuality} from "./consts.mjs";
+
 const { HTMLField, NumberField, SchemaField, StringField, ArrayField, DocumentIdField } = foundry.data.fields;
 
 /* -------------------------------------------- */
@@ -16,6 +18,7 @@ class ActorDataModel extends foundry.abstract.TypeDataModel {
 					max: new NumberField({ required: true, integer: true, min: 4, initial: 4 }),
 				}),
 			}),
+			movementSpeed: new NumberField({ required: true, integer: true, min: 0, initial: 20 }),
 			stoutness: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			deftness: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			wisdom: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
@@ -73,11 +76,11 @@ class BuyableItemDataModel extends ItemDataModel {
 	static defineSchema() {
 		return {
 			...super.defineSchema(),
-			rarity: new StringField({
+			quality: new StringField({
 				required: true,
 				blank: false,
-				options: ["common", "uncommon", "rare", "legendary"],
-				initial: "common",
+				options: itemQuality,
+				initial: "normal",
 			}),
 			price: new NumberField({ required: true, integer: true, min: 0, initial: 10 }),
 		};
@@ -89,6 +92,8 @@ export class WeaponDataModel extends BuyableItemDataModel {
 		return {
 			...super.defineSchema(),
 			material: new StringField({ required: true, blank: false, initial: "iron" }),
+			type: new StringField({ required: true, blank: false, initial: "polearm" }),
+			formula: new StringField({ required: true, blank: false, initial: "1d6+@attributes.sto" }),
 		};
 	}
 }
@@ -107,8 +112,9 @@ export class ResourceDataModel extends BuyableItemDataModel {
 		return {
 			...super.defineSchema(),
 			type: new StringField({ required: true, blank: false, initial: "ore" }),
-			created_date: new StringField({ required: true, blank: false, initial: "" }),
-			expiration_date: new StringField({ required: true, blank: false, initial: "" }),
+            quantity: new NumberField({ required: true, integer: true, min: 0, initial: 1 }),
+			created_date: new NumberField({ required: true, blank: false, initial: 0 }),
+			expiration_date: new StringField({ required: true, blank: true, initial: "" }),
 		};
 	}
 }
@@ -124,7 +130,7 @@ export class SkillDataModel extends ItemDataModel {
 
 	static migrateData(source) {
 		if (Number.isNumeric(source.level)) {
-			source.exp = source.level == 0 ? 0 : Math.pow(2, source.level) - 1;
+			source.exp = source.level === 0 ? 0 : Math.pow(2, source.level) - 1;
 		}
 		return super.migrateData(source);
 	}

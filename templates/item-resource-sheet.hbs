@@ -1,0 +1,48 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+	<header class="sheet-header">
+		<img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+		<div class="header-fields flexcol">
+			<h1 class="charname">
+				<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" /><br />
+			</h1>
+            <div class="flexrow">
+                <div>
+                    <label for="system.quality">{{localize "sheet.item.qualityLabel"}}</label>
+                    <select name="system.quality">
+                        {{selectOptions itemQualities selected=system.quality localize=true valueAttr="value" labelAttr="label"}}
+                    </select>
+                </div>
+                <div>
+                    {{localize "sheet.item.assetValue" value=item.assetValue}}
+                </div>
+            </div>
+        </div>
+	</header>
+	<section class="item-type-details grid grid-col-2">
+		<div>
+			<label for="system.type">{{localize "sheet.item.type"}}</label>
+			<input
+				name="system.type"
+				type="text"
+				value="{{system.type}}"
+				placeholder="{{localize 'sheet.item.resourceType'}}"
+			/>
+		</div>
+        <div>
+            <label for="system.quantity">{{localize "sheet.item.quantity"}}</label>
+            <input name="system.quantity" type="text" value="{{system.quantity}}" placeholder="{{localize 'sheet.item.quantity'}}" />
+        </div>
+        <div>
+            <label for="system.price">{{localize "sheet.item.price"}}</label>
+            <input name="system.price" type="text" value="{{system.price}}" placeholder="{{localize 'sheet.item.price'}}" />
+        </div>
+        <div>
+            <label for="system.created_date">{{localize "sheet.item.created_date"}}</label>
+            <input name="system.created_date" type="text" value="{{system.created_date}}" placeholder="{{localize 'sheet.item.created_date'}}" />
+        </div>
+        <div>
+            <label for="system.expiration_date">{{localize "sheet.item.expiration_date"}}</label>
+            <input name="system.expiration_date" type="text" value="{{system.expiration_date}}" placeholder="{{localize 'sheet.item.expiration_date'}}" />
+        </div>
+	</section>
+</form>
