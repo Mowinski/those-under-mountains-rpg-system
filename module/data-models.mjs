@@ -1,6 +1,6 @@
 import {itemQuality} from "./consts.mjs";
 
-const { HTMLField, NumberField, SchemaField, StringField, ArrayField, DocumentIdField } = foundry.data.fields;
+const { HTMLField, NumberField, SchemaField, StringField, ArrayField, BooleanField } = foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Actor Models                                */
@@ -22,8 +22,6 @@ class ActorDataModel extends foundry.abstract.TypeDataModel {
 			stoutness: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			deftness: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			wisdom: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
-			armorClass: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
-			passiveArmorClass: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 			armor: new SchemaField({
 				head: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
 				body: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
@@ -133,5 +131,17 @@ export class SkillDataModel extends ItemDataModel {
 			source.exp = source.level === 0 ? 0 : Math.pow(2, source.level) - 1;
 		}
 		return super.migrateData(source);
+	}
+}
+
+export class FeatureDataModel extends ItemDataModel {
+	static defineSchema() {
+		return {
+			name: new StringField({ required: true, blank: false, initial: "New Feature" }),
+			featureType: new StringField({ required: true, blank: false, options: ['martial', 'trade'], initial: "trade" }),
+			prerequisite: new ArrayField(new StringField({ required: true, blank: false }), { required: true, blank: false, initial: [] }),
+			isAllowed: new BooleanField({ required: true, initial: true }),
+			description: new HTMLField({ required: true, blank: true }),
+		};
 	}
 }

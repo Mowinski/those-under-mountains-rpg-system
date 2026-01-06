@@ -5,6 +5,7 @@ import {
 	ToolDataModel,
 	ResourceDataModel,
 	SkillDataModel,
+    FeatureDataModel,
 } from "./module/data-models.mjs";
 import { DwarfActorSheet } from "./module/dwarf-sheet.mjs";
 import { TUMItemSheet } from "./module/item-sheet.mjs";
@@ -24,9 +25,8 @@ Hooks.once("init", () => {
 		tool: ToolDataModel,
 		resource: ResourceDataModel,
 		skill: SkillDataModel,
+        feat: FeatureDataModel,
 	};
-
-	CONFIG.Item;
 
 	// Configure trackable attributes.
 	CONFIG.Actor.trackableAttributes = {

@@ -96,6 +96,7 @@
             "material": "Materiał",
             "qualityLabel": "Jakość",
             "price": "Cena",
+            "quantity": "Ilość",
             "quality": {
               "normal": "Normalny",
               "good": "Dobry",

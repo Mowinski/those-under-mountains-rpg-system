@@ -1,125 +1,110 @@
-<section class="grid grid-3col">
-	<div class="ability flexcol flex-group-center">
-		<label
-			for="system.sto"
-			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+{{stoValue}}"
-			data-label="{{sto}}"
-		>
-			<i class="fa-solid fa-dice"></i>
-			{{sto}}
-		</label>
-		<input type="text" name="system.stoutness" value="{{stoValue}}" data-dtype="Number" />
-	</div>
+<section class="grid grid-3col" style="gap: 10px; margin-bottom: 20px;">
 
-	<div class="ability flexcol flex-group-center">
-		<label
-			for="system.deftness"
-			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+{{defValue}}"
-			data-label="{{def}}"
-		>
-			<i class="fa-solid fa-dice"></i>
-			{{def}}
-		</label>
-		<input type="text" name="system.deftness" value="{{defValue}}" data-dtype="Number" />
-	</div>
+    <div class="ability flexcol flex-group-center" style="gap: 0;">
+        <label for="system.stoutness" class="resource-label rollable"
+               data-roll="d12+{{stoValue}}" data-label="{{sto}}"
+               style="background: #e9e4d6; border: 1px solid #7a7971; border-bottom: none; border-radius: 4px 4px 0 0; width: 100%; padding: 3px 0; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; transition: background 0.2s;">
+            <i class="fa-solid fa-dice-d20" style="font-size: 0.8em; color: #822111;"></i>
+            {{sto}}
+        </label>
+        <input type="text" name="system.stoutness" value="{{stoValue}}" data-dtype="Number"
+               style="border: 1px solid #7a7971; border-radius: 0 0 4px 4px; height: 32px; font-size: 1.2em; font-weight: bold; margin: 0; text-align: center; background: #fff;"/>
+    </div>
 
-	<div class="ability flexcol flex-group-center">
-		<label
-			for="system.wisdom"
-			class="resource-label rollable flexlarge align-left"
-			data-roll="d12+{{wisValue}}"
-			data-label="{{wis}}"
-		>
-			<i class="fa-solid fa-dice"></i>
-			{{wis}}
-		</label>
-		<input type="text" name="system.wisdom" value="{{wisValue}}" data-dtype="Number" />
-	</div>
+    <div class="ability flexcol flex-group-center" style="gap: 0;">
+        <label for="system.deftness" class="resource-label rollable"
+               data-roll="d12+{{defValue}}" data-label="{{def}}"
+               style="background: #e9e4d6; border: 1px solid #7a7971; border-bottom: none; border-radius: 4px 4px 0 0; width: 100%; padding: 3px 0; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; transition: background 0.2s;">
+            <i class="fa-solid fa-dice-d20" style="font-size: 0.8em; color: #822111;"></i>
+            {{def}}
+        </label>
+        <input type="text" name="system.deftness" value="{{defValue}}" data-dtype="Number"
+               style="border: 1px solid #7a7971; border-radius: 0 0 4px 4px; height: 32px; font-size: 1.2em; font-weight: bold; margin: 0; text-align: center; background: #fff;"/>
+    </div>
+
+    <div class="ability flexcol flex-group-center" style="gap: 0;">
+        <label for="system.wisdom" class="resource-label rollable"
+               data-roll="d12+{{wisValue}}" data-label="{{wis}}"
+               style="background: #e9e4d6; border: 1px solid #7a7971; border-bottom: none; border-radius: 4px 4px 0 0; width: 100%; padding: 3px 0; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; transition: background 0.2s;">
+            <i class="fa-solid fa-dice-d20" style="font-size: 0.8em; color: #822111;"></i>
+            {{wis}}
+        </label>
+        <input type="text" name="system.wisdom" value="{{wisValue}}" data-dtype="Number"
+               style="border: 1px solid #7a7971; border-radius: 0 0 4px 4px; height: 32px; font-size: 1.2em; font-weight: bold; margin: 0; text-align: center; background: #fff;"/>
+    </div>
+
 </section>
 <h2>{{localize "sheet.armorHeader"}}</h2>
 
-<section class="flexrow">
-	<div class="flexcol flex-group-center">
-		<label for="system.ac" class="resource-label flexlarge align-left">
-			Armor class
-		</label>
-		<input type="text" name="system.armorClass" value="{{system.armorClass}}" data-dtype="Number" />
-	</div>
-	<div class="flex-group-center" style="align-content: center;">
-		-->
-	</div>
-	<div class="flexcol flex-group-center">
-		<label for="system.inspiration" class="resource-label flexlarge align-left">
-			Passive armor class
-		</label>
-		<input type="text" name="system.passiveArmorClass" value="{{system.passiveArmorClass}}" data-dtype="Number" />
-	</div>
+<section class="flexrow" style="justify-content: center; gap: 40px; margin: 10px 0; font-family: 'Modesto Condensed', 'Palatino Linotype', serif;">
+    <div style="text-align: center;">
+        <span style="display: block; font-size: 0.9em; color: #444;">🛡️ Armor Class</span>
+        <strong style="font-size: 1.8em; color: #191813;">{{actor.armorClass}}</strong>
+    </div>
+    <div style="text-align: center;">
+        <span style="display: block; font-size: 0.9em; color: #444;">👤 Passive AC</span>
+        <strong style="font-size: 1.8em; color: #191813; opacity: 0.8;">{{actor.passiveArmorClass}}</strong>
+    </div>
 </section>
 
-<section class="flexcol" style="margin-top: 30px">
-	<div class="grid grid-3col">
-		<div>
-			<label for="system.armor.head" class="resource-label align-left">
-				{{localize "sheet.attributes.head"}}
-			</label>
-			<input type="text" name="system.armor.head" value="{{system.armor.head}}" data-dtype="Number" />
-		</div>
-		<div></div>
-		<div>
-			<label for="system.armor.skill" class="resource-label align-left">
-				{{localize "sheet.attributes.skill"}}
-			</label>
-			<input type="text" name="system.armor.skill" value="{{system.armor.skill}}" data-dtype="Number" />
-		</div>
-	</div>
+<section class="flexrow" style="gap: 20px; margin-top: 20px;">
 
-	<div class="grid grid-3col">
-		<div>
-			<label for="system.armor.body" class="resource-label align-left">
-				{{localize "sheet.attributes.body"}}
-			</label>
-			<input type="text" name="system.armor.body" value="{{system.armor.body}}" data-dtype="Number" />
-		</div>
-		<div></div>
-		<div>
-			<label for="system.armor.def" class="resource-label align-left">
-				{{localize "sheet.attributes.def"}}
-			</label>
-			<input type="text" name="system.armor.def" value="{{system.armor.def}}" data-dtype="Number" />
-		</div>
-	</div>
+    <div class="flexcol" style="flex: 1; background: rgba(0,0,0,0.03); border-radius: 5px; padding: 10px; border: 1px dashed #7a7971;">
+        <h3 style="flex: 0; border-bottom: 1px solid #822111; color: #822111; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase;">
+            Pancerz Warstwowy
+        </h3>
 
-	<div class="grid grid-3col">
-		<div>
-			<label for="system.armor.legs" class="resource-label align-left">
-				{{localize "sheet.attributes.legs"}}
-			</label>
-			<input type="text" name="system.armor.legs" value="{{system.armor.legs}}" data-dtype="Number" />
-		</div>
-		<div></div>
-		<div>
-			<label for="system.armor.misc" class="resource-label align-left">
-				{{localize "sheet.attributes.misc"}}
-			</label>
-			<input type="text" name="system.armor.misc" value="{{system.armor.misc}}" data-dtype="Number" />
-		</div>
-	</div>
+        <div class="flexrow" style="align-items: center; gap: 15px;">
+            <div class="flexcol" style="flex: 2;">
+                <div class="form-group">
+                    <label class="resource-label">{{localize "sheet.attributes.head"}}</label>
+                    <input type="text" name="system.armor.head" value="{{system.armor.head}}" data-dtype="Number" />
+                </div>
+                <div class="form-group">
+                    <label class="resource-label">{{localize "sheet.attributes.body"}}</label>
+                    <input type="text" name="system.armor.body" value="{{system.armor.body}}" data-dtype="Number" />
+                </div>
+                <div class="form-group">
+                    <label class="resource-label">{{localize "sheet.attributes.legs"}}</label>
+                    <input type="text" name="system.armor.legs" value="{{system.armor.legs}}" data-dtype="Number" />
+                </div>
+            </div>
 
-	<div class="grid grid-3col">
-		<div>
-			<label for="system.armor.block" class="resource-label align-left">
-				{{localize "sheet.attributes.block"}}
-			</label>
-			<input type="text" name="system.armor.block" value="{{system.armor.block}}" data-dtype="Number" />
-		</div>
-		<div></div>
-		<div>
-			<label for="system.armor.parry" class="resource-label align-left">
-				{{localize "sheet.attributes.parry"}}
-			</label>
-			<input type="text" name="system.armor.parry" value="{{system.armor.parry}}" data-dtype="Number" />
-		</div>
-	</div>
+            <div class="flexcol" style="flex: 1; background: #822111; color: white; border-radius: 4px; padding: 10px; text-align: center; justify-content: center; min-height: 80px;">
+                <span style="font-size: 0.7em; text-transform: uppercase; line-height: 1;">Średnia</span>
+                <div style="font-size: 1.8em; font-weight: bold;">
+                    3
+                </div>
+                <span style="font-size: 0.6em; opacity: 0.8;">Pancerza</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flexcol" style="flex: 1; padding: 10px;">
+        <h3 style="border-bottom: 1px solid #7a7971; color: #444; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase;">
+            Obrona i Umiejętności
+        </h3>
+        <div class="grid grid-2col" style="gap: 10px;">
+            <div>
+                <label class="resource-label">{{localize "sheet.attributes.skill"}}</label>
+                <input type="text" name="system.armor.skill" value="{{system.armor.skill}}" data-dtype="Number" />
+            </div>
+            <div>
+                <label class="resource-label">{{localize "sheet.attributes.def"}}</label>
+                <input type="text" name="system.armor.def" value="{{system.armor.def}}" data-dtype="Number" />
+            </div>
+            <div>
+                <label class="resource-label">{{localize "sheet.attributes.block"}}</label>
+                <input type="text" name="system.armor.block" value="{{system.armor.block}}" data-dtype="Number" />
+            </div>
+            <div>
+                <label class="resource-label">{{localize "sheet.attributes.parry"}}</label>
+                <input type="text" name="system.armor.parry" value="{{system.armor.parry}}" data-dtype="Number" />
+            </div>
+            <div style="grid-column: span 2;">
+                <label class="resource-label">{{localize "sheet.attributes.misc"}}</label>
+                <input type="text" name="system.armor.misc" value="{{system.armor.misc}}" data-dtype="Number" />
+            </div>
+        </div>
+    </div>
 </section>

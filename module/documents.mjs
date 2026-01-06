@@ -44,17 +44,14 @@ export class SystemActor extends Actor {
 			def: actorData.system.deftness,
 			wis: actorData.system.wisdom,
 		};
-	}
+        const block = Math.ceil((actorData.system.armor.head + actorData.system.armor.body + actorData.system.armor.legs) / 3);
+        const def = actorData.system.armor.def
+        const skill = actorData.system.armor.skill;
+        const parry = actorData.system.armor.parry;
+        const misc = actorData.system.armor.misc;
 
-	async applyDamage() {
-		damage = 1;
-
-		const { value } = this.system.resources.wounds;
-		await this.update({ "system.resources.wounds.value": value + damage });
-
-		await ChatMessage.implementation.create({
-			content: `${this.name} took damage!`,
-		});
+        this.armorClass = block + def + skill + parry + misc + actorData.system.armor.block;
+        this.passiveArmorClass = block + skill + misc + actorData.system.armor.block;
 	}
 }
 

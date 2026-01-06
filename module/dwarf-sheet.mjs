@@ -220,7 +220,7 @@ export class DwarfActorSheet extends ActorSheet {
 		const dataset = element.dataset;
 
 		if (dataset.roll) {
-			let roll = new Roll(dataset.roll, actor);
+			let roll = new Roll(dataset.roll, this.actor);
 			let label = dataset.label ? game.i18n.format("sheet.rollDice", { label: dataset.label }) : "";
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: this.actor }),

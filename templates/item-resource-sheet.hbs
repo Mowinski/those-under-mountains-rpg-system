@@ -5,7 +5,7 @@
 			<h1 class="charname">
 				<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" /><br />
 			</h1>
-            <div class="flexrow">
+            <div class="flexrow" style="margin-top: 10px; align-items: center;">
                 <div>
                     <label for="system.quality">{{localize "sheet.item.qualityLabel"}}</label>
                     <select name="system.quality">
@@ -39,10 +39,6 @@
         <div>
             <label for="system.created_date">{{localize "sheet.item.created_date"}}</label>
             <input name="system.created_date" type="text" value="{{system.created_date}}" placeholder="{{localize 'sheet.item.created_date'}}" />
-        </div>
-        <div>
-            <label for="system.expiration_date">{{localize "sheet.item.expiration_date"}}</label>
-            <input name="system.expiration_date" type="text" value="{{system.expiration_date}}" placeholder="{{localize 'sheet.item.expiration_date'}}" />
         </div>
 	</section>
 </form>

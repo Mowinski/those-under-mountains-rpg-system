@@ -7,7 +7,6 @@
             <th>{{localize "Name"}}</th>
             <th>{{localize "Quantity"}}</th>
             <th>{{localize "AssetValue"}}</th>
-            <th>{{localize "ExpirationDate"}}</th>
             <th style="text-align: right;">
                 <a class="item-control resource-create" title="{{localize 'DOCUMENT.Create' type="Resource"}}" data-type="resource">
                     <i class="fas fa-plus"></i>
@@ -29,7 +28,6 @@
                 </td>
                 <td>{{item.system.quantity}}</td>
                 <td>{{localize "sheet.item.value" value=item.assetValue}}</td>
-                <td>{{item.system.expiration_date}}</td>
                 <td style="text-align: right;">
                     <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Item"}}">
                         <i class="fas fa-edit"></i>
@@ -43,7 +41,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5"></td>
+                <td colspan="4"></td>
                 <td style="text-align: right">{{localize "sheet.item.total" value=totalResourcesValue}}</td>
             </tr>
         </tfoot>
