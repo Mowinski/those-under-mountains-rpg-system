@@ -1,4 +1,4 @@
-import {itemQuality, levelChoices} from "./consts.mjs";
+import {itemQuality, levelChoices, featureTypes} from "./consts.mjs";
 
 export class TUMItemSheet extends ItemSheet {
 	/** @override */
@@ -22,7 +22,8 @@ export class TUMItemSheet extends ItemSheet {
 		const itemData = context.document;
 		context.system = itemData.system;
 		context.flags = itemData.flags;
-        context.itemQualities = itemQuality.map(quality => ({label: game.i18n.localize(`sheet.item.quality.${quality}`), value: quality}))
+        context.itemQualities = itemQuality.map(quality => ({label: game.i18n.localize(`sheet.item.quality.${quality}`), value: quality}));
+		context.featureTypes = featureTypes.map(featureType => ({label: game.i18n.localize('sheet.feature.featureTypes.' + featureType), value: featureType}));
 
 		if (itemData.type === "skill") {
 			const calculatedLevel = Math.floor(Math.log2(context.system.exp + 1)) - 1;
@@ -40,6 +41,8 @@ export class TUMItemSheet extends ItemSheet {
 
 		html.on("click", ".promote-item", this._onPromoteItem.bind(this));
 		html.on("click", ".demote-item", this._onDemoteItem.bind(this));
+		html.on("click", "#add-prerequisite", this._onAddPrerequisite.bind(this));
+		html.on("click", ".delete-prerequisite", this._onDeletePrerequisite.bind(this))
 		html.find(".rollable").click(this._onRoll.bind(this));
 	}
 
@@ -56,6 +59,17 @@ export class TUMItemSheet extends ItemSheet {
 		if (currentExp > 0) {
 			await this.item.update({ "system.exp": currentExp - 1 });
 		}
+	}
+
+	_onAddPrerequisite(event) {
+		event.preventDefault();
+		this.item.update({ "system.prerequisite": [...this.item.system.prerequisite, 'New prerequisite'] });
+	}
+
+	_onDeletePrerequisite(event) {
+		event.preventDefault();
+		const newPrerequisite = this.item.system.prerequisite.filter((_, index) => index !== Number(event.currentTarget.dataset.index));
+		this.item.update({ "system.prerequisite": newPrerequisite });
 	}
 
 	_onRoll(event) {

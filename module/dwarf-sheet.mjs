@@ -20,7 +20,7 @@ export class DwarfActorSheet extends ActorSheet {
 	}
 
 	/** @override */
-	getData() {
+	async getData() {
 		// Retrieve the data structure from the base sheet. You can inspect or log
 		// the context variable to see the structure, but some key properties for
 		// sheets are the actor object, the data object, whether or not it's
@@ -31,11 +31,14 @@ export class DwarfActorSheet extends ActorSheet {
 
 		context.system = actorData.system;
 		context.flags = actorData.flags;
+		const pack = game.packs.get("those-under-mountains.features");
+		context.availableFeatures = await pack.getDocuments();
 
 		// Prepare character data and items.
 		this._prepareItems(context);
 		this._prepareCharacterData(context);
 		this._prepareActiveEffectCategories(context, this.actor.allApplicableEffects());
+		this._prepareFeatures(context);
 
 		console.log(context, "Dwarf Actor Sheet Context");
 		return context;
@@ -63,6 +66,7 @@ export class DwarfActorSheet extends ActorSheet {
 		const tools = [];
 		const skills = [];
         const resources = [];
+		const features = []
         context.totalResourcesValue = 0;
         context.totalToolsValue = 0;
         context.totalWeaponsValue = 0;
@@ -86,14 +90,22 @@ export class DwarfActorSheet extends ActorSheet {
                 resources.push(i);
                 context.totalResourcesValue += i.assetValue;
             }
+			else if (i.type === "feat") {
+				features.push(i);
+			}
 		}
 
 		// Assign and return
 		context.weapons = weapons;
 		context.tools = tools;
         context.resources = resources;
+		context.features = features;
 		context.skills = skills.sort((a, b) => b.system.exp - a.system.exp);
 		context.skillsList = flattenedSkillList;
+	}
+
+	_prepareFeatures() {
+
 	}
 
 	_prepareActiveEffectCategories(context, effects) {
@@ -143,6 +155,8 @@ export class DwarfActorSheet extends ActorSheet {
 		html.on("click", ".skill-create", this._onSkillCreate.bind(this));
         html.on("click", ".resource-create", this._onResourceCreate.bind(this));
 		html.on("click", ".item-delete", this._onItemDelete.bind(this));
+		html.on("click", ".item-preview", this._onFeaturePreview.bind(this));
+		html.on("click", "#add-feature", this._onFeatureAdd.bind(this));
 
 		// Active Effect management
 		html.on("click", ".effect-control", (ev) => {
@@ -153,6 +167,15 @@ export class DwarfActorSheet extends ActorSheet {
 
 		html.on("click", ".rollable", this._onRoll.bind(this));
 	}
+
+	async _onFeaturePreview(event) {
+		event.preventDefault();
+		const selectedFeatureId = $('#addNewFeature').val();
+		const pack = game.packs.get("those-under-mountains.features");
+		const feat = await pack.getDocument(selectedFeatureId);
+		feat.sheet.render(true)
+	}
+
 	async _onSkillCreate(event) {
 		event.preventDefault();
 		const skillName = $('[name="newSkill"]').val();
@@ -202,7 +225,6 @@ export class DwarfActorSheet extends ActorSheet {
             created_date: game.time.worldTime,
         };
 
-
         console.log("Creating item with data:", itemData);
         return await Item.create(itemData, { parent: this.actor });
     }
@@ -212,6 +234,17 @@ export class DwarfActorSheet extends ActorSheet {
 		const item = this.actor.items.get(parent.data("itemId"));
 		item.delete();
 		parent.slideUp(200, () => this.render(false));
+	}
+	
+	async _onFeatureAdd(event) {
+		event.preventDefault();
+		const selectedFeatureId = $('#addNewFeature').val();
+		const pack = game.packs.get("those-under-mountains.features");
+		const itemData = (await pack.getDocument(selectedFeatureId)).toObject();
+
+		this.actor.createEmbeddedDocuments("Item", [itemData]);
+		ui.notifications.info("Feature added successfully!");
+		console.log(selectedFeatureId);
 	}
 
 	_onRoll(event) {

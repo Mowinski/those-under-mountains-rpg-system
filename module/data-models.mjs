@@ -1,6 +1,6 @@
-import {itemQuality} from "./consts.mjs";
+import {featureTypes, itemQuality} from "./consts.mjs";
 
-const { HTMLField, NumberField, SchemaField, StringField, ArrayField, BooleanField } = foundry.data.fields;
+const { HTMLField, NumberField, SchemaField, StringField, ArrayField, DocumentUUIDField } = foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Actor Models                                */
@@ -41,6 +41,7 @@ export class DwarfActorDataModel extends ActorDataModel {
 		return {
 			...super.defineSchema(),
 			gold: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+			features: new ArrayField(new DocumentUUIDField({ required: true, blank: false }), { required: true, blank: false, initial: [] }),
 			background: new SchemaField({
 				biography: new HTMLField({ required: true, blank: true }),
 				visual: new HTMLField({ required: true, blank: true }),
@@ -137,11 +138,9 @@ export class SkillDataModel extends ItemDataModel {
 export class FeatureDataModel extends ItemDataModel {
 	static defineSchema() {
 		return {
-			name: new StringField({ required: true, blank: false, initial: "New Feature" }),
-			featureType: new StringField({ required: true, blank: false, options: ['martial', 'trade'], initial: "trade" }),
+			...super.defineSchema(),
+			featureType: new StringField({ required: true, blank: false, options: featureTypes, initial: "trade" }),
 			prerequisite: new ArrayField(new StringField({ required: true, blank: false }), { required: true, blank: false, initial: [] }),
-			isAllowed: new BooleanField({ required: true, initial: true }),
-			description: new HTMLField({ required: true, blank: true }),
 		};
 	}
 }

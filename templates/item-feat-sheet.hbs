@@ -1,0 +1,39 @@
+<form class="{{cssClass}} item-sheet-modern flexcol" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <div class="image-container">
+            <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+        </div>
+        <div class="header-details flexcol">
+            <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" class="item-name-input" />
+            <div class="item-subtitle">
+                <select name="system.featureType">
+                    {{selectOptions featureTypes selected=system.featureType localize=true valueAttr="value" labelAttr="label"}}
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="sheet-content">
+        <section class="prerequisites-section">
+            <label class="section-label"><i class="fas fa-scroll"></i> {{localize "sheet.feature.prerequisites"}}</label>
+            <div class="prerequisites-grid">
+                {{#each system.prerequisite as |prereq index|}}
+                    <div class="prereq-tag">
+                        <input type="text" name="system.prerequisite.{{index}}" value="{{prereq}}"/>
+                        <a class="delete-prerequisite" data-index="{{index}}"><i class="fas fa-times"></i></a>
+                    </div>
+                {{/each}}
+                <button type="button" id="add-prerequisite" class="add-prereq-btn">
+                    <i class="fas fa-plus"></i> {{localize "sheet.feature.addPrerequisite"}}
+                </button>
+            </div>
+        </section>
+
+        <section class="description-section">
+            <label class="section-label"><i class="fas fa-align-left"></i> {{localize "sheet.item.description"}}</label>
+            <div class="editor-wrapper">
+                {{editor system.description target="system.description" engine="prosemirror" button=true editable=editable}}
+            </div>
+        </section>
+    </div>
+</form>

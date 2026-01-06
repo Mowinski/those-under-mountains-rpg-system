@@ -83,7 +83,8 @@
             "items": "Items",
             "description": "Description",
             "effects": "Effects",
-            "skills": "Skills"
+            "skills": "Skills",
+            "features": "Features"
         },
         "item": {
             "description": "Description",
@@ -108,6 +109,16 @@
             "expiration_date": "Expiration date",
             "total": "Total value: {value} gp",
             "value": "{value} gp"
+        },
+        "feature": {
+            "prerequisites": "Prerequisites",
+            "addPrerequisite": "Add prerequisite",
+            "deletePrerequisite": "Delete prerequisite",
+            "featureTypes": {
+                "martial": "Martial",
+                "trade": "Trade",
+                "other": "Other"
+            }
         },
         "skill": {
             "name": "Name",

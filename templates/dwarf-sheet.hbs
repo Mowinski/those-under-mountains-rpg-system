@@ -7,6 +7,7 @@
 		<a class="item" data-tab="attributes">{{localize "sheet.tab.attributes"}}</a>
 		<a class="item" data-tab="items">{{localize "sheet.tab.items"}}</a>
 		<a class="item" data-tab="skills">{{localize "sheet.tab.skills"}}</a>
+        <a class="item" data-tab="feat">{{localize "sheet.tab.features"}}</a>
 		<a class="item" data-tab="effects">{{localize "sheet.tab.effects"}} To be done</a>
 		<a class="item" data-tab="description">{{localize "sheet.tab.description"}}</a>
 	</nav>
@@ -26,7 +27,10 @@
 		<div class="tab skills" data-group="primary" data-tab="skills">
 			{{> "systems/those-under-mountains/templates/parts/skills.hbs"}}
 		</div>	
-		
+
+        <div class="tab feat" data-group="primary" data-tab="feat">
+            {{> "systems/those-under-mountains/templates/parts/features.hbs"}}
+        </div>
 		{{!-- Owned Items Tab --}}
 		<div class="tab items" data-group="primary" data-tab="items">
 			{{> "systems/those-under-mountains/templates/parts/items.hbs"}}
