@@ -11,7 +11,8 @@
         "newSkill": "Nowa umiejętność",
         "updateSkill": "Edytuj umiejętność",
         "deleteSkill": "Usuń umiejętność",
-        "newSkillName": "Nowa umiejętność"
+        "newSkillName": "Nowa umiejętność",
+        "addFeature": "Dodaj atut"
     },
     "ancestry": {
         "Duergar": "Duergar: Dark dwarves",
@@ -117,6 +118,7 @@
             "featureTypes": {
                 "martial": "Bojowe",
                 "trade": "Usługowe",
+                "ancestry": "Rodowód",
                 "other": "Inne"
             }
         },

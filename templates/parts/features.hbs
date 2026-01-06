@@ -9,7 +9,82 @@
             </tr>
         </thead>
         <tbody>
-        {{#each features as |feat id|}}
+        <tr>
+            <th colspan="4">{{localize "sheet.feature.featureTypes.trade"}}</th>
+        </tr>
+        {{#each features.trade as |feat id|}}
+            <tr data-item-id="{{feat._id}}">
+                <td style="width: 32px">
+                    <img src="{{feat.img}}" title="{{feat.name}}" width="24" height="24" />
+                </td>
+                <td>
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        {{feat.name}}
+                    </a>
+                </td>
+                <td>{{{feat.system.description}}}</td>
+                <td style="text-align: right;">
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="item-control item-delete" title="{{localize 'DOCUMENT.Delete' type="Feature"}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+        <tr>
+            <th colspan="4">{{localize "sheet.feature.featureTypes.martial"}}</th>
+        </tr>
+        {{#each features.martial as |feat id|}}
+            <tr data-item-id="{{feat._id}}">
+                <td style="width: 32px">
+                    <img src="{{feat.img}}" title="{{feat.name}}" width="24" height="24" />
+                </td>
+                <td>
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        {{feat.name}}
+                    </a>
+                </td>
+                <td>{{{feat.system.description}}}</td>
+                <td style="text-align: right;">
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="item-control item-delete" title="{{localize 'DOCUMENT.Delete' type="Feature"}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+        <tr>
+            <th colspan="4">{{localize "sheet.feature.featureTypes.ancestry"}}</th>
+        </tr>
+        {{#each features.ancestry as |feat id|}}
+            <tr data-item-id="{{feat._id}}">
+                <td style="width: 32px">
+                    <img src="{{feat.img}}" title="{{feat.name}}" width="24" height="24" />
+                </td>
+                <td>
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        {{feat.name}}
+                    </a>
+                </td>
+                <td>{{{feat.system.description}}}</td>
+                <td style="text-align: right;">
+                    <a class="item-control item-edit" title="{{localize 'DOCUMENT.Update' type="Feature"}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="item-control item-delete" title="{{localize 'DOCUMENT.Delete' type="Feature"}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+        <tr>
+            <th colspan="4">{{localize "sheet.feature.featureTypes.other"}}</th>
+        </tr>
+        {{#each features.other as |feat id|}}
             <tr data-item-id="{{feat._id}}">
                 <td style="width: 32px">
                     <img src="{{feat.img}}" title="{{feat.name}}" width="24" height="24" />
@@ -36,12 +111,23 @@
                 <td colspan="4">
                     <div class="flexrow" style="align-items: center;">
                         <select id="addNewFeature" style="flex: 1;">
-                            {{selectOptions availableFeatures localize=true valueAttr="_id" labelAttr="name"}}
+                            <optgroup label="{{localize 'sheet.feature.featureTypes.trade'}}">
+                                {{selectOptions availableFeatures.trade localize=true valueAttr="_id" labelAttr="name"}}
+                            </optgroup>
+                            <optgroup label="{{localize 'sheet.feature.featureTypes.martial'}}">
+                                {{selectOptions availableFeatures.martial localize=true valueAttr="_id" labelAttr="name"}}
+                            </optgroup>
+                            <optgroup label="{{localize 'sheet.feature.featureTypes.ancestry'}}">
+                                {{selectOptions availableFeatures.ancestry localize=true valueAttr="_id" labelAttr="name"}}
+                            </optgroup>
+                            <optgroup label="{{localize 'sheet.feature.featureTypes.other'}}">
+                                {{selectOptions availableFeatures.other localize=true valueAttr="_id" labelAttr="name"}}
+                            </optgroup>
                         </select>
-                        <a class="item-control item-preview">
+                        <a class="item-control item-preview" style="margin-left: 5px;">
                             <i class="fas fa-circle-info"></i>
                         </a>
-                        <button id="add-feature" style="flex: 3">{{localize "DOCUMENT.Add" type="Feature"}}</button>
+                        <button id="add-feature" style="flex: 3">{{localize "DOCUMENT.addFeature" type="Feature"}}</button>
                     </div>
                 </td>
             </tr>

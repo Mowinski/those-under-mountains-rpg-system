@@ -64,4 +64,4 @@ export const flattenedSkillList = Object.values(skillList).reduce((acc, category
 }, {});
 
 export const itemQuality = ["normal", "good", "perfect"];
-export const featureTypes = ["martial", "trade", "other"];
+export const featureTypes = ["martial", "trade", "ancestry", "other"];

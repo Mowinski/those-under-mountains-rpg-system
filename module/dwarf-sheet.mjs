@@ -32,8 +32,8 @@ export class DwarfActorSheet extends ActorSheet {
 		context.system = actorData.system;
 		context.flags = actorData.flags;
 		const pack = game.packs.get("those-under-mountains.features");
-		context.availableFeatures = await pack.getDocuments();
-
+		const availableFeatures = await pack.getDocuments();
+		context.availableFeatures = this._groupFeatures(availableFeatures);
 		// Prepare character data and items.
 		this._prepareItems(context);
 		this._prepareCharacterData(context);
@@ -99,7 +99,7 @@ export class DwarfActorSheet extends ActorSheet {
 		context.weapons = weapons;
 		context.tools = tools;
         context.resources = resources;
-		context.features = features;
+		context.features = this._groupFeatures(features);
 		context.skills = skills.sort((a, b) => b.system.exp - a.system.exp);
 		context.skillsList = flattenedSkillList;
 	}
@@ -173,6 +173,7 @@ export class DwarfActorSheet extends ActorSheet {
 		const selectedFeatureId = $('#addNewFeature').val();
 		const pack = game.packs.get("those-under-mountains.features");
 		const feat = await pack.getDocument(selectedFeatureId);
+		if(!feat) return;
 		feat.sheet.render(true)
 	}
 
@@ -266,5 +267,15 @@ export class DwarfActorSheet extends ActorSheet {
 				item.roll(this.actor);
 			}
 		}
+	}
+
+	_groupFeatures(features) {
+		features = features.sort((a, b) => a.name.localeCompare(b.name));
+		return {
+			trade: features.filter((f) => f.system.featureType === "trade"),
+			martial: features.filter((f) => f.system.featureType === "martial"),
+			ancestry: features.filter((f) => f.system.featureType === "ancestry"),
+			other: features.filter((f) => f.system.featureType === "other"),
+		};
 	}
 }

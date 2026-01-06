@@ -11,7 +11,8 @@
         "newSkill": "New Skill",
         "updateSkill": "Update Skill",
         "deleteSkill": "Delete Skill",
-        "newSkillName": "New Skill"
+        "newSkillName": "New Skill",
+        "addFeature": "Add Feature"
     },
     "ancestry": {
         "Duergar": "Duergar: Dark dwarves",
@@ -117,6 +118,7 @@
             "featureTypes": {
                 "martial": "Martial",
                 "trade": "Trade",
+                "ancestry": "Ancestry",
                 "other": "Other"
             }
         },
