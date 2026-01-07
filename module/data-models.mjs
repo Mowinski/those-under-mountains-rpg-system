@@ -57,7 +57,15 @@ export class DwarfActorDataModel extends ActorDataModel {
 // The pawn does not have any different data to the base ActorDataModel, but we
 // still define a data model for it, in case we have any special logic we want
 // to perform only for pawns.
-export class PawnDataModel extends ActorDataModel {}
+export class HoldActorDataModel extends foundry.abstract.TypeDataModel {
+	static defineSchema() {
+		return {
+			name: new StringField({ required: true, blank: false, initial: "New Actor" }),
+			description: new HTMLField({ required: true, blank: true }),
+			gold: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+		}
+	}
+}
 
 /* -------------------------------------------- */
 /*  Item Models                                 */

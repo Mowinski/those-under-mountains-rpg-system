@@ -151,9 +151,9 @@ export class DwarfActorSheet extends ActorSheet {
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
-		html.on("click", ".item-create", this._onItemCreate.bind(this));
 		html.on("click", ".skill-create", this._onSkillCreate.bind(this));
-        html.on("click", ".resource-create", this._onResourceCreate.bind(this));
+		html.on("click", ".item-create", this._onItemCreate.bind(this));
+		html.on("click", ".resource-create", this._onResourceCreate.bind(this));
 		html.on("click", ".item-delete", this._onItemDelete.bind(this));
 		html.on("click", ".item-preview", this._onFeaturePreview.bind(this));
 		html.on("click", "#add-feature", this._onFeatureAdd.bind(this));

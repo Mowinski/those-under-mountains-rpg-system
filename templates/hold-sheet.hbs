@@ -1,0 +1,14 @@
+<form class="{{cssClass}} item-sheet-modern flexcol" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <div class="image-container">
+            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        </div>
+        <div class="header-details flexcol">
+            <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'sheet.item.name'}}" class="item-name-input" />
+        </div>
+    </header>
+
+    <div class="sheet-content">
+        {{> "systems/those-under-mountains/templates/parts/items.hbs"}}
+    </div>
+</form>
