@@ -1,4 +1,4 @@
-import {itemQuality, levelChoices, featureTypes} from "./consts.mjs";
+import {itemQuality, levelChoices, featureTypes, flattenedSkillList} from "./consts.mjs";
 
 export class TUMItemSheet extends ItemSheet {
 	/** @override */
@@ -24,6 +24,7 @@ export class TUMItemSheet extends ItemSheet {
 		context.flags = itemData.flags;
         context.itemQualities = itemQuality.map(quality => ({label: game.i18n.localize(`sheet.item.quality.${quality}`), value: quality}));
 		context.featureTypes = featureTypes.map(featureType => ({label: game.i18n.localize('sheet.feature.featureTypes.' + featureType), value: featureType}));
+		context.skillsList = flattenedSkillList;
 
 		if (itemData.type === "skill") {
 			const calculatedLevel = Math.floor(Math.log2(context.system.exp + 1)) - 1;
@@ -74,6 +75,6 @@ export class TUMItemSheet extends ItemSheet {
 
 	_onRoll(event) {
 		event.preventDefault();
-		this.actor.items.get(this.object.id).roll(this.actor);
+		this.object.roll(this.actor);
 	}
 }

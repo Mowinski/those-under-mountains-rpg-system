@@ -1,5 +1,6 @@
 import { levelChoices, flattenedSkillList, ancestries } from "./consts.mjs";
 import { htmlToPlainText } from "./templates.mjs";
+import {onManageActiveEffect, prepareActiveEffectCategories} from "./effects.js";
 
 export class DwarfActorSheet extends ActorSheet {
 	/** @override */
@@ -37,7 +38,9 @@ export class DwarfActorSheet extends ActorSheet {
 		// Prepare character data and items.
 		this._prepareItems(context);
 		this._prepareCharacterData(context);
-		this._prepareActiveEffectCategories(context, this.actor.allApplicableEffects());
+		context.effects = prepareActiveEffectCategories(
+			this.actor.allApplicableEffects()
+		);
 		this._prepareFeatures(context);
 
 		console.log(context, "Dwarf Actor Sheet Context");
@@ -108,34 +111,6 @@ export class DwarfActorSheet extends ActorSheet {
 
 	}
 
-	_prepareActiveEffectCategories(context, effects) {
-		const categories = {
-			temporary: {
-				type: "temporary",
-				label: game.i18n.localize("BOILERPLATE.Effect.Temporary"),
-				effects: [],
-			},
-			passive: {
-				type: "passive",
-				label: game.i18n.localize("BOILERPLATE.Effect.Passive"),
-				effects: [],
-			},
-			inactive: {
-				type: "inactive",
-				label: game.i18n.localize("BOILERPLATE.Effect.Inactive"),
-				effects: [],
-			},
-		};
-
-		// Iterate over active effects, classifying them into categories
-		for (let e of effects) {
-			if (e.disabled) categories.inactive.effects.push(e);
-			else if (e.isTemporary) categories.temporary.effects.push(e);
-			else categories.passive.effects.push(e);
-		}
-		context.effects = categories;
-	}
-
 	/** @override */
 	activateListeners(html) {
 		super.activateListeners(html);
@@ -151,20 +126,21 @@ export class DwarfActorSheet extends ActorSheet {
 		// Everything below here is only needed if the sheet is editable
 		if (!this.isEditable) return;
 
+		html.on('click', '.effect-control', (ev) => {
+			const row = ev.currentTarget.closest('li');
+			const document =
+				row.dataset.parentId === this.actor.id
+					? this.actor
+					: this.actor.items.get(row.dataset.parentId);
+			onManageActiveEffect(ev, document);
+		});
+
 		html.on("click", ".skill-create", this._onSkillCreate.bind(this));
 		html.on("click", ".item-create", this._onItemCreate.bind(this));
 		html.on("click", ".resource-create", this._onResourceCreate.bind(this));
 		html.on("click", ".item-delete", this._onItemDelete.bind(this));
 		html.on("click", ".item-preview", this._onFeaturePreview.bind(this));
 		html.on("click", "#add-feature", this._onFeatureAdd.bind(this));
-
-		// Active Effect management
-		html.on("click", ".effect-control", (ev) => {
-			const row = ev.currentTarget.closest("li");
-			const document = row.dataset.parentId === this.actor.id ? this.actor : this.actor.items.get(row.dataset.parentId);
-			onManageActiveEffect(ev, document);
-		});
-
 		html.on("click", ".rollable", this._onRoll.bind(this));
 	}
 

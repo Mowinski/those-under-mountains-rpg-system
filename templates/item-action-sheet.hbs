@@ -1,0 +1,39 @@
+<form class="{{cssClass}} {{item.type}} flexcol" autocomplete="off">
+	<header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+        <div class="flexcol">
+            <div class="header-fields flexcol">
+                <h1 class="charname">
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'sheet.item.name'}}" /><br />
+                </h1>
+            </div>
+            <select name="newSkill">
+                {{#each skillsList as |skillName|}}
+                    <option value="{{localize skillName}}">{{localize skillName}}</option>
+                {{/each}}
+                <option value="{{localize 'DOCUMENT.newSkillName'}}">{{localize "DOCUMENT.newSkillName"}}</option>
+            </select>
+        </div>
+	</header>
+	<section class="item-type-details grid grid-col-2" style="justify-items: center; align-items: end;">
+		<div>
+			<label for="system.formula">{{localize "sheet.item.formula"}}</label>
+			<input
+				name="system.formula"
+				type="text"
+				value="{{system.formula}}"
+				placeholder="{{localize 'sheet.item.formula'}}"
+			/>
+		</div>
+        <div>
+            <button type="button" name="roll" class="rollable" {{#unless system.formula}}disabled{{/unless}}>{{localize "sheet.roll"}}</button>
+        </div>
+	</section>
+	<hr />
+	<section class="sheet-body">
+		<div style="height: 100%">
+			<label for="system.description">{{localize "sheet.item.description"}}</label>
+			{{editor system.description target="system.description" engine="prosemirror" button=true editable=editable}}
+		</div>
+	</section>
+</form>

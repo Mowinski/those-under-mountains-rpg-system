@@ -8,11 +8,15 @@
     },
     "DOCUMENT": {
         "createSkill": "Utwórz umiejętność",
+        "createEffect": "Utwórz efekt",
         "newSkill": "Nowa umiejętność",
         "updateSkill": "Edytuj umiejętność",
+        "updateEffect": "Edytuj efekt",
+        "deleteEffect": "Usuń efekt",
         "deleteSkill": "Usuń umiejętność",
         "newSkillName": "Nowa umiejętność",
-        "addFeature": "Dodaj atut"
+        "addFeature": "Dodaj atut",
+        "toggle": "Przełącz"
     },
     "ancestry": {
         "Duergar": "Duergar: Dark dwarves",
@@ -69,6 +73,20 @@
         "armorHeader": "Zbroja",
         "roll": "Rzut",
         "rollDice": "Rzut na {label}",
+        "effects": {
+            "temporary": "Tymczasowe",
+            "passive": "Pasywne",
+            "source": "Źródło",
+            "duration": "Czas trwania",
+            "roundDuration": "{round} rund",
+            "durationPeriod": {
+                "years": "{count} lat",
+                "days": "{count} dni",
+                "hours": "{count} godzin",
+                "minutes": "{count} minut",
+                "seconds": "{count} sekund"
+            }
+        },
         "attributes": {
             "body": "Ciało",
             "head": "Głowa",

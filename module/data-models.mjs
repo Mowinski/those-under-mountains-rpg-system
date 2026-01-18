@@ -132,6 +132,7 @@ export class SkillDataModel extends ItemDataModel {
 			name: new StringField({ required: true, blank: false, initial: "New Skill" }),
 			description: new HTMLField({ required: true, blank: true }),
 			exp: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+			actions: new ArrayField(new DocumentUUIDField({ required: true, blank: false }), { required: true, blank: false, initial: [] }),
 		};
 	}
 
@@ -149,6 +150,17 @@ export class FeatureDataModel extends ItemDataModel {
 			...super.defineSchema(),
 			featureType: new StringField({ required: true, blank: false, options: featureTypes, initial: "trade" }),
 			prerequisite: new ArrayField(new StringField({ required: true, blank: false }), { required: true, blank: false, initial: [] }),
+		};
+	}
+}
+
+export class ActionDataModel extends foundry.abstract.TypeDataModel {
+	static defineSchema() {
+		return {
+			name: new StringField({ required: true, blank: false, initial: "New Action" }),
+			description: new HTMLField({ required: true, blank: true }),
+			formula: new StringField({ required: true, blank: true }),
+			parentSkill: new StringField({ required: true, blank: true }),
 		};
 	}
 }

@@ -40,3 +40,4 @@ export function htmlToPlainText(html) {
 	// 5. Kosmetyka: usuń potrójne entery i wyczyść białe znaki na końcach
 	return finalString.replace(/\n\s*\n\s*\n/g, "\n\n").trim();
 }
+

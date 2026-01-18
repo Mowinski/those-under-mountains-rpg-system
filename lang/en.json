@@ -8,11 +8,15 @@
     },
     "DOCUMENT": {
         "createSkill": "Create skill",
+        "createEffect": "Create effect",
         "newSkill": "New Skill",
         "updateSkill": "Update Skill",
+        "updateEffect": "Update Effect",
+        "deleteEffect": "Delete Effect",
         "deleteSkill": "Delete Skill",
         "newSkillName": "New Skill",
-        "addFeature": "Add Feature"
+        "addFeature": "Add Feature",
+        "toggle": "Toggle"
     },
     "ancestry": {
         "Duergar": "Duergar: Dark dwarves",
@@ -69,6 +73,20 @@
         "armorHeader": "Armor",
         "roll": "Roll",
         "rollDice": "Roll for {label}",
+        "effects": {
+            "temporary": "Temporary",
+            "passive": "Passive",
+            "source": "Source",
+            "duration": "Duration",
+            "roundDuration": "{round} rounds",
+            "durationPeriod": {
+                "years": "{count} years",
+                "days": "{count} days",
+                "hours": "{count} hours",
+                "minutes": "{count} minutes",
+                "seconds": "{count} seconds"
+            }
+        },
         "attributes": {
             "body": "Body",
             "head": "Head",

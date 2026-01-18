@@ -7,11 +7,13 @@ import {
 	ResourceDataModel,
 	SkillDataModel,
     FeatureDataModel,
+	ActionDataModel,
 } from "./module/data-models.mjs";
 import { DwarfActorSheet } from "./module/dwarf-sheet.mjs";
 import { HoldActorSheet } from "./module/hold-sheet.mjs";
 import { TUMItemSheet } from "./module/item-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./module/templates.mjs";
+import {formatDuration} from "./module/effects.js";
 
 Hooks.once("init", () => {
 	// Configure custom Document implementations.
@@ -29,6 +31,7 @@ Hooks.once("init", () => {
 		resource: ResourceDataModel,
 		skill: SkillDataModel,
         feat: FeatureDataModel,
+		action: ActionDataModel,
 	};
 
 	// Configure trackable attributes.
@@ -55,4 +58,9 @@ Hooks.once("init", () => {
 
 	console.log("Those Under Mountains | Initialized those-under-mountains system");
 	return preloadHandlebarsTemplates();
+});
+
+
+Handlebars.registerHelper('duration', function (str) {
+	return formatDuration(str);
 });

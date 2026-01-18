@@ -86,11 +86,19 @@ export class SystemItem extends Item {
 		if (this.type === "weapon") {
 			let roll = new Roll(this.system.formula, actor);
 			let label = this.name ? game.i18n.format("sheet.rollDice", { label: this.name }) : "";
-			console.log(actor);
 			roll.toMessage({
 				speaker: ChatMessage.getSpeaker({ actor: actor }),
 				flavor: label,
 			});
+		}
+
+		if(this.type === "action") {
+			const roll = new Roll(this.system.formula, actor);
+			let label = this.name ? game.i18n.format("sheet.rollDice", { label: this.name }) : "";
+			roll.toMessage({
+				speaker: ChatMessage.getSpeaker({ actor: actor }),
+				flavor: label,
+			})
 		}
 	}
 }
